@@ -8,9 +8,10 @@ RUN npm run build
 
 RUN mkdir -p /usr/src/app/server
 WORKDIR /usr/src/app/server
-COPY ./server /usr/src/app/server
+COPY server /usr/src/app/server
 RUN npm install
 RUN rm -rf /usr/src/app/server/client
 RUN mv /usr/src/app/client/dist/kaieru /usr/src/app/server/client
-EXPOSE 3000
+RUN rm -rf /usr/src/app/client
+EXPOSE 5000
 CMD [ "npm", "run", "s" ]

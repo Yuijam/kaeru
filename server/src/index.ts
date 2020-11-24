@@ -9,6 +9,6 @@ app.get('/health', (req, res) => {
 
 app.use('/', express.static(path.join(__dirname, '..', 'client')));
 
-app.listen(3000, () => {
-  console.log('listening 3000');
+app.listen(5000, () => {
+  console.log('listening 5000');
 });
