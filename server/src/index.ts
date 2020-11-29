@@ -1,16 +1,14 @@
 import express from 'express';
 import * as path from 'path';
 import {initdb} from './db';
+import {BASE_API_URL} from './config';
+import {router} from './router';
 initdb();
 
 const app = express();
 
-app.get('/health', (req, res) => {
-  res.status(200);
-  res.send('ok');
-});
-
 app.use('/', express.static(path.join(__dirname, '..', 'client')));
-app.listen(5000, () => {
-  console.log('listening 5000');
+app.use(BASE_API_URL, router);
+app.listen(3000, () => {
+  console.log('listening 3000');
 });
