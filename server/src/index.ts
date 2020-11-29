@@ -1,9 +1,7 @@
 import express from 'express';
 import * as path from 'path';
-import {initdb} from './db';
 import {BASE_API_URL} from './config';
 import {router} from './router';
-initdb();
 
 const app = express();
 

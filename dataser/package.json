@@ -1,17 +1,22 @@
 {
-  "name": "shared",
+  "name": "dataser",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "b": "rimraf ./dist && tsc -p tsconfig.json",
-    "init": "npm run b && ts-node src/initLink.ts"
+    "s": "ts-node src/index.ts",
+    "b": "tsc"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "date-fns": "^2.16.1"
+    "@types/cheerio": "^0.22.21",
+    "@types/mysql": "^2.15.15",
+    "axios": "^0.19.2",
+    "cheerio": "^1.0.0-rc.3",
+    "dotenv": "^8.2.0",
+    "mysql": "^2.18.1"
   },
   "devDependencies": {
     "@types/node": "^12.11.1",
@@ -20,10 +25,8 @@
     "eslint": "^7.5.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "fs-extra": "9.0.0",
     "lint-staged": "^10.2.11",
     "prettier": "^2.0.5",
-    "rimraf": "^2.6.3",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
     "typescript": "~3.9.5"

@@ -1,0 +1,19 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7.32
+    volumes:
+      - ~/kaeru_db_data:/var/lib/mysql
+      - ./db/init.sql:/data/application/init.sql
+    environment:
+      - TZ=Asia/Tokyo
+      - MYSQL_ROOT_PASSWORD=root
+    restart: always
+    container_name: kaerudb
+    command: 
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_general_ci
+      --init-file /data/application/init.sql
+    ports:
+      - 3306:3306
+    
