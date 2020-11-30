@@ -1,7 +1,7 @@
 import axios, {AxiosResponse} from 'axios';
 // import {methods, recievers} from '../config';
 import {TTweet, TParsedTweet} from '../types';
-import {TRunningStatus} from 'shared/types';
+import {TRunningStatus} from 'shared/model';
 const baseTlUrl = 'https://api.twitter.com/1.1/statuses/user_timeline.json?';
 
 // export const pushMsg = (msg: string) => {
@@ -26,5 +26,5 @@ const parseTweet = (tweet: TTweet): TRunningStatus => {
 export const parseTweets = (tweets: TTweet[]): TParsedTweet[] =>
   tweets.map(tweet => ({
     ...tweet,
-    status: parseTweet(tweet),
+    statusCd: parseTweet(tweet),
   }));

@@ -7,5 +7,5 @@ export type TTweet = {
 };
 
 export type TParsedTweet = TTweet & {
-  status: TRunningStatus;
+  statusCd: TRunningStatus;
 };

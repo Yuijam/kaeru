@@ -1,12 +1,10 @@
 import {TParsedTweet} from '../types';
-import {TRecordDB, TRecord} from 'shared/model';
+import {TRecordDB, TRecord, TPartialRecord} from 'shared/model';
 import {toDateStr} from 'shared/lib/dateFns';
 
-type TSaveRecord = Omit<TRecordDB, 'id' | 'deleted_at'>;
-
-export const parsedTweetToDB = (tweet: TParsedTweet, lineId: number): TSaveRecord => ({
+export const parsedTweetToDB = (tweet: TParsedTweet, lineId: number): TPartialRecord => ({
   line_id: lineId,
-  status_cd: tweet.status,
+  status_cd: tweet.statusCd,
   message: tweet.text,
   created_at: toDateStr(tweet.created_at),
 });

@@ -1,3 +1,5 @@
+import {TPartialEntity} from '../helper';
+
 export type TRunningStatus = 'IN_TROUBLE' | 'NORMAL';
 
 export type TRecord = {
@@ -17,3 +19,5 @@ export type TRecordDB = {
   created_at: string;
   deleted_at: string;
 };
+
+export type TPartialRecord = TPartialEntity<TRecordDB>;
