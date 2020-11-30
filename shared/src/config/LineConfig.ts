@@ -4,7 +4,7 @@ type TLineConfig = {
   screenName: string;
 };
 
-export const LineConfig: TLineConfig[] = [
+export const lineConfigs: TLineConfig[] = [
   {
     id: 1,
     name: '京王線',

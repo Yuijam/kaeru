@@ -8,8 +8,9 @@ if (result.error) {
   throw result.error;
 }
 
-const main = () => {
-  parseTwitter();
+const main = async () => {
+  await parseTwitter();
+  end();
 };
 
 main();
