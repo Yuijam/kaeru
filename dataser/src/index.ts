@@ -10,7 +10,6 @@ if (result.error) {
 
 const main = async () => {
   await parseTwitter();
-  console.log('test');
   end();
 };
 

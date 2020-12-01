@@ -9,7 +9,7 @@ export const logger = winston.createLogger({
   transports: [
     new DailyRotateFile({
       filename: '%DATE%.log',
-      datePattern: 'YYYY-MM-DD-HH',
+      datePattern: 'YYYY-MM-DD',
       dirname: 'log',
       zippedArchive: true,
       maxSize: '5k',

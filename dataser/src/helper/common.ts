@@ -15,7 +15,8 @@ export const toTwitterPromise = (api: string): Promise<AxiosResponse<TTweet[]>> 
     headers: {Authorization: `Bearer ${process.env.TWITTER_BEARER_TOKEN}`},
   });
 
-const badWords = ['遅れ', '運休', '人身事故', '見合せ'];
+const badWords = ['遅れ', '運休', '人身事故', '見合せ', '運転再開', '所要時間の増加が見込まれます', 'ダイヤが乱れて'];
+const goodWords = ['平常'];
 
 const parseTweet = (tweet: TTweet): TRunningStatus => {
   const {text} = tweet;

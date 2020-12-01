@@ -22,7 +22,7 @@ export const query = (sql: string, values?: any): Promise<any> => {
         throw 'get connection failed' + err;
       }
       connection.query(sql, values, (err, results) => {
-        // release(connection);
+        release(connection);
         if (err) {
           throw err;
         }
