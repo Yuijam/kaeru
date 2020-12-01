@@ -8,3 +8,5 @@ export const getLatestRecord = async (lineId: number) => {
 };
 
 export const addRecord = (data: TPartialRecord) => query('insert into record set ?', data);
+
+export const getRecords = () => query('select * from record');

@@ -1,6 +1,6 @@
 import {lineConfigs} from 'shared/config';
 import {toTLApi, toTwitterPromise, parseTweets, parsedTweetToDB, logger} from '../helper';
-import {addRecord, getLatestRecord} from '../db/record';
+import {addRecord, getLatestRecord, getRecords} from '../db/record';
 
 export default async () => {
   const promises = lineConfigs.map(async cfg => {
@@ -21,4 +21,6 @@ export default async () => {
     }
   });
   await Promise.all(promises);
+  const res = await getRecords();
+  console.log(res);
 };
