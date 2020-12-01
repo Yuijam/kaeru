@@ -12,7 +12,7 @@ export const logger = winston.createLogger({
       datePattern: 'YYYY-MM-DD',
       dirname: 'log',
       zippedArchive: true,
-      maxSize: '5k',
+      maxSize: '1m',
       maxFiles: '14d',
     }),
   ],

@@ -1,6 +1,6 @@
 import {TPartialEntity} from '../helper';
 
-export type TRunningStatus = 'IN_TROUBLE' | 'NORMAL';
+export type TRunningStatus = 'IN_TROUBLE' | 'NORMAL' | 'UNKNOWN';
 
 export type TRecord = {
   id: number;

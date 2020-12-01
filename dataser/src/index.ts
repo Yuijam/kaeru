@@ -10,7 +10,8 @@ if (result.error) {
 
 const main = async () => {
   await parseTwitter();
-  end();
+  // end();
 };
 
-main();
+const interval = 5 * 60 * 1000;
+setInterval(() => main(), interval);

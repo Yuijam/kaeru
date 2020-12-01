@@ -2,6 +2,8 @@ import axios, {AxiosResponse} from 'axios';
 // import {methods, recievers} from '../config';
 import {TTweet, TParsedTweet} from '../types';
 import {TRunningStatus} from 'shared/model';
+import {logger} from './logger';
+
 const baseTlUrl = 'https://api.twitter.com/1.1/statuses/user_timeline.json?';
 
 // export const pushMsg = (msg: string) => {
@@ -21,7 +23,15 @@ const goodWords = ['平常'];
 const parseTweet = (tweet: TTweet): TRunningStatus => {
   const {text} = tweet;
   const hasBadWord = badWords.some(word => text.includes(word));
-  return hasBadWord ? 'IN_TROUBLE' : 'NORMAL';
+  if (hasBadWord) {
+    return 'IN_TROUBLE';
+  }
+  const hasGoodWord = goodWords.some(word => text.includes(word));
+  if (hasGoodWord) {
+    return 'NORMAL';
+  }
+  logger.info(`UNKNOWN tweet ${text}`);
+  return 'UNKNOWN';
 };
 
 export const parseTweets = (tweets: TTweet[]): TParsedTweet[] =>
