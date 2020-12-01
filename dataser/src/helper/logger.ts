@@ -1,5 +1,5 @@
 import winston from 'winston';
-import DailyRotateFile = require('winston-daily-rotate-file');
+import DailyRotateFile from 'winston-daily-rotate-file';
 
 // transport.on('rotate', function (oldFilename, newFilename) {
 //   // do something fun

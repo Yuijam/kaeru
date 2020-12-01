@@ -15,5 +15,20 @@ services:
       --collation-server=utf8mb4_general_ci
       --init-file /data/application/init.sql
     ports:
-      - 3306:3306
-    
+      - "3306:3306"
+  dataser:
+    restart: always
+    volumes:
+      - ~/kaeru_dataser_log:/usr/src/app/dataser/log
+    build:
+      context: .
+      dockerfile: ./dataser/Dockerfile
+    ports:
+      - "3300:3300"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3300"]
+      interval: 10s
+      timeout: 3s
+      retries: 1
+    depends_on:
+      - db
