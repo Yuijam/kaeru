@@ -22,11 +22,11 @@ const fetchData = async (cfg: TLineConfig): Promise<TFetchRes> => {
       logger.info('add record');
       await addRecord(parsedTweetToDB(latestData, cfg.id));
     }
-    logger.info(`parse ${cfg.screenName} ok`);
+    logger.info(`parse ${cfg.name} ok`);
     return {res: 'OK', msg: ''};
   } catch (err) {
-    logger.error(`parse ${cfg.screenName} Error! ${err}`);
-    return {res: 'FAILED', msg: cfg.screenName};
+    logger.error(`parse ${cfg.name} Error! ${err}`);
+    return {res: 'FAILED', msg: cfg.name};
   }
 };
 

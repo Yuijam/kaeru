@@ -6,6 +6,8 @@ import {logger} from './logger';
 
 const baseTlUrl = 'https://api.twitter.com/1.1/statuses/user_timeline.json?';
 
+export const isProduction = () => process.env.KAERU_ENV === 'production';
+
 // export const pushMsg = (msg: string) => {
 //   return Promise.all(recievers.map(chatId => axios.post(methods.sendMessage, {chat_id: chatId, text: msg})));
 // };

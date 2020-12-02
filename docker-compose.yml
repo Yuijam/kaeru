@@ -16,19 +16,28 @@ services:
       --init-file /data/application/init.sql
     ports:
       - "3306:3306"
+    expose: 
+      - "3306"
   dataser:
+    depends_on:
+      - db
     restart: always
     volumes:
       - ~/kaeru_dataser_log:/usr/src/app/dataser/log
+    container_name: kaeru_dataser
     build:
       context: .
       dockerfile: ./dataser/Dockerfile
     ports:
       - "3300:3300"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3300"]
-      interval: 10s
-      timeout: 20s
-      retries: 3 
-    depends_on:
-      - db
+    expose: 
+      - "3300"
+    environment: 
+      - KAERU_ENV=production
+    # healthcheck:
+    #   test: ["CMD", "curl", "-f", "http://localhost:3300"]
+    #   interval: 10s
+    #   timeout: 20s
+    #   retries: 3 
+    links:
+      - "db:kaeru_db"
