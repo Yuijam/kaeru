@@ -14,7 +14,7 @@ const main = async () => {
   // end();
 };
 
-const interval = 5 * 60 * 1000;
+const interval = 300000;
 setInterval(() => main(), interval);
 
 const healthyCheckSer = http.createServer((req, res) => {

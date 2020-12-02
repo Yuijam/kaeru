@@ -1,11 +1,13 @@
-import winston from 'winston';
+import {createLogger, format} from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
+const {combine, timestamp, prettyPrint} = format;
 
 // transport.on('rotate', function (oldFilename, newFilename) {
 //   // do something fun
 // });
 
-export const logger = winston.createLogger({
+export const logger = createLogger({
+  format: combine(timestamp({format: 'YYYY-MM-DD HH:mm:ss'}), prettyPrint()),
   transports: [
     new DailyRotateFile({
       filename: '%DATE%.log',

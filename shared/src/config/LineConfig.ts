@@ -1,4 +1,4 @@
-type TLineConfig = {
+export type TLineConfig = {
   id: number;
   name: string;
   screenName: string;
