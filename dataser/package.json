@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "s": "ts-node src/index.ts",
-    "b": "tsc -p tsconfig.json"
+    "b": "tsc -p tsconfig.json",
+    "dbup": "npx prisma migrate save --experimental && npx prisma migrate up --experimental && npx prisma generate",
+    "dbstudio": "npx prisma studio"
   },
   "keywords": [],
   "author": "",
