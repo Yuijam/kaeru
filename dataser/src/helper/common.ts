@@ -20,7 +20,7 @@ export const toTwitterPromise = (api: string): Promise<AxiosResponse<TTweet[]>> 
   });
 
 const badWords = ['遅れ', '運休', '人身事故', '見合せ', '運転再開', '所要時間の増加が見込まれます', 'ダイヤが乱れて'];
-const goodWords = ['平常'];
+const goodWords = ['平常', 'ダイヤ乱れが収束し'];
 
 const parseTweet = (tweet: TTweet): TRunningStatus => {
   const {text} = tweet;
