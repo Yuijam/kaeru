@@ -1,3 +1,4 @@
+import { Context as MyContext } from '../resolvers/context';
 import { GraphQLResolveInfo } from 'graphql';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -19,22 +20,17 @@ export type Query = {
 
 export type Record = {
   __typename?: 'Record';
-  id: Scalars['ID'];
+  id: Scalars['Int'];
   lineId: Scalars['Int'];
-  statusCd: StatusCd;
+  statusCd: Scalars['String'];
   message: Scalars['String'];
   msgId: Scalars['String'];
   deletedAt?: Maybe<Scalars['String']>;
   createdAt: Scalars['String'];
 };
 
-export enum StatusCd {
-  Normal = 'NORMAL',
-  InTrouble = 'IN_TROUBLE',
-  Unknown = 'UNKNOWN'
-}
-
-
+export type WithIndex<TObject> = TObject & Record<string, any>;
+export type ResolversObject<TObject> = WithIndex<TObject>;
 
 export type ResolverTypeWrapper<T> = Promise<T> | T;
 
@@ -111,49 +107,46 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 ) => TResult | Promise<TResult>;
 
 /** Mapping between all available schema types and the resolvers types */
-export type ResolversTypes = {
+export type ResolversTypes = ResolversObject<{
   Query: ResolverTypeWrapper<{}>;
   Record: ResolverTypeWrapper<Record>;
-  ID: ResolverTypeWrapper<Scalars['ID']>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
-  StatusCd: StatusCd;
   String: ResolverTypeWrapper<Scalars['String']>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
-};
+}>;
 
 /** Mapping between all available schema types and the resolvers parents */
-export type ResolversParentTypes = {
+export type ResolversParentTypes = ResolversObject<{
   Query: {};
   Record: Record;
-  ID: Scalars['ID'];
   Int: Scalars['Int'];
   String: Scalars['String'];
   Boolean: Scalars['Boolean'];
-};
+}>;
 
-export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
+export type QueryResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
   records?: Resolver<Maybe<Array<ResolversTypes['Record']>>, ParentType, ContextType>;
-};
+}>;
 
-export type RecordResolvers<ContextType = any, ParentType extends ResolversParentTypes['Record'] = ResolversParentTypes['Record']> = {
-  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+export type RecordResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Record'] = ResolversParentTypes['Record']> = ResolversObject<{
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   lineId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
-  statusCd?: Resolver<ResolversTypes['StatusCd'], ParentType, ContextType>;
+  statusCd?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   message?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   msgId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   deletedAt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
-};
+}>;
 
-export type Resolvers<ContextType = any> = {
+export type Resolvers<ContextType = MyContext> = ResolversObject<{
   Query?: QueryResolvers<ContextType>;
   Record?: RecordResolvers<ContextType>;
-};
+}>;
 
 
 /**
  * @deprecated
  * Use "Resolvers" root object instead. If you wish to get "IResolvers", add "typesPrefix: I" to your config.
  */
-export type IResolvers<ContextType = any> = Resolvers<ContextType>;
+export type IResolvers<ContextType = MyContext> = Resolvers<ContextType>;

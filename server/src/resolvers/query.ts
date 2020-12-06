@@ -1,17 +1,14 @@
-// import {IResolvers, TPare} from 'graphql';
-import {Resolver, Resolvers, StatusCd} from '../generated/graphql';
-
-export const resolvers: Resolvers = {
-  Query: {
-    records: (parent, args, context) => [
-      {
-        id: '1',
-        lineId: 1,
-        statusCd: StatusCd.Normal,
-        message: 'vvv',
-        msgId: 'msgid',
-        createdAt: 'crateat',
-      },
-    ],
+import {QueryResolvers, Resolvers} from '../generated/graphql';
+import {prisma} from '../db/prisma';
+export const query: QueryResolvers = {
+  records: async (parent: any, args: any, context: any) => {
+    const res = await prisma.record.findMany();
+    console.log(res);
+    const newres = res.map((r: any) => ({...r, createdAt: '2222', deletedAt: 'aaa'}));
+    return newres;
   },
+};
+
+export default {
+  Query: query,
 };

@@ -3,17 +3,11 @@ type Query {
 }
 
 type Record {
-  id: ID!
+  id: Int!
   lineId: Int!
-  statusCd: StatusCd!
+  statusCd: String!
   message: String!
   msgId: String!
   deletedAt: String
   createdAt: String!
-}
-
-enum StatusCd {
-  NORMAL
-  IN_TROUBLE
-  UNKNOWN
 }

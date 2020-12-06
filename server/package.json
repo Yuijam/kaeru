@@ -18,6 +18,7 @@
     "apollo-server": "^2.19.0"
   },
   "devDependencies": {
+    "@graphql-codegen/add": "^2.0.2",
     "@graphql-codegen/cli": "1.19.4",
     "@graphql-codegen/introspection": "1.18.1",
     "@graphql-codegen/typescript": "1.19.0",
