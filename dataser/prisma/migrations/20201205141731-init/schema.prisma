@@ -12,6 +12,7 @@ model Record {
   lineId      Int
   statusCd    String
   message     String
+  msgId       String
   deletedAt   String?
   createdAt   DateTime @default(now())
 }

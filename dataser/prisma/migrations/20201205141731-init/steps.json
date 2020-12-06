@@ -94,6 +94,13 @@
     {
       "tag": "CreateField",
       "model": "Record",
+      "field": "msgId",
+      "type": "String",
+      "arity": "Required"
+    },
+    {
+      "tag": "CreateField",
+      "model": "Record",
       "field": "deletedAt",
       "type": "String",
       "arity": "Optional"

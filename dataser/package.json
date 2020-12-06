@@ -7,9 +7,11 @@
     "s": "ts-node src/index.ts",
     "b": "tsc -p tsconfig.json",
     "init-prisma": "npx prisma init",
+    "prod-dbup": "echo yes | npx prisma migrate save --experimental && npx prisma migrate up --experimental && npx prisma generate",
     "dbup": "npx prisma migrate save --experimental && npx prisma migrate up --experimental && npx prisma generate",
     "dbstudio": "npx prisma studio",
-    "setup": "npm install && npm run dbup"
+    "setup": "npm install && npm run dbup",
+    "prod-setup": "npm install && npm run prod-dbup"
   },
   "keywords": [],
   "author": "",
