@@ -1,0 +1,19 @@
+type Query {
+  records: [Record!]
+}
+
+type Record {
+  id: ID!
+  lineId: Int!
+  statusCd: StatusCd!
+  message: String!
+  msgId: String!
+  deletedAt: String
+  createdAt: String!
+}
+
+enum StatusCd {
+  NORMAL
+  IN_TROUBLE
+  UNKNOWN
+}
