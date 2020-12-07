@@ -38,14 +38,18 @@ targetProj.map(proj => {
 // sync prisma model
 targetPrismaProj.map(proj => {
   const targetPrismaPath = path.join(__dirname, '..', '..', `${proj}/prisma`);
-  if (fs.existsSync(targetPrismaPath)) {
-    fs.unlinkSync(targetPrismaPath);
-  }
-  exec(`cp -r ${prismaDir} ${targetPrismaPath}`, err => {
+  exec(`rm -rf ${targetPrismaPath}`, err => {
     if (err) {
-      console.log(`cp -r ${prismaDir} ${targetPrismaPath} failed! ${err}`);
+      console.log(`rm -rf ${targetPrismaPath} failed! ${err}`);
     } else {
-      console.log(`copy prisma to ${targetPrismaPath} ok!`);
+      console.log(`remove ${targetPrismaPath} ok!`);
+      exec(`cp -r ${prismaDir} ${targetPrismaPath}`, err => {
+        if (err) {
+          console.log(`cp -r ${prismaDir} ${targetPrismaPath} failed! ${err}`);
+        } else {
+          console.log(`copy prisma to ${targetPrismaPath} ok!`);
+        }
+      });
     }
   });
 });
