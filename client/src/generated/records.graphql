@@ -1,0 +1,11 @@
+query GetRecords {
+  records {
+    id
+    msgId
+    lineId
+    message
+    statusCd
+    createdAt
+    deletedAt
+  }
+}

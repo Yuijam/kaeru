@@ -1,15 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Apollo, gql } from 'apollo-angular';
 import { map } from 'rxjs/operators';
-const GET_RECORDS = gql`
-  {
-    records {
-      id
-      msgId
-      createdAt
-    }
-  }
-`;
+import { GetRecordsGQL, GetRecordsQuery } from '../generated/graphql-types';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -18,15 +10,15 @@ const GET_RECORDS = gql`
 export class AppComponent implements OnInit {
   title = 'kaieru';
 
-  constructor(private apollo: Apollo) {}
+  records: Observable<GetRecordsQuery['records']>;
+  constructor(recordGQL: GetRecordsGQL) {
+    recordGQL
+      .watch()
+      .valueChanges.pipe(map((res) => res.data.records))
+      .subscribe((res) => console.log(`gql ok!`, res));
+  }
 
   ngOnInit() {
     console.log('on init');
-    this.apollo
-      .watchQuery({
-        query: GET_RECORDS,
-      })
-      .valueChanges.pipe(map((res) => res))
-      .subscribe(console.log);
   }
 }
