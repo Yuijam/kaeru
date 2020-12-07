@@ -6,13 +6,13 @@ const distDir = path.join(__dirname, '..', 'dist');
 if (!fs.existsSync(distDir)) {
   throw '/dist is not exist';
 }
-const prismaDir = path.join(__dirname, '..', '..', 'dataser/prisma');
+const prismaDir = path.join(__dirname, '..', 'prisma');
 if (!fs.existsSync(prismaDir)) {
   throw 'prisma dir is not exist';
 }
 
 const targetProjConfig = ['client', 'server', 'dataser'];
-const targetPrismaConfig = ['server'];
+const targetPrismaConfig = ['server', 'dataser'];
 
 const targetProj = targetProjConfig.filter(proj => {
   const targetPath = path.join(__dirname, '..', '..', `${proj}/node_modules`);

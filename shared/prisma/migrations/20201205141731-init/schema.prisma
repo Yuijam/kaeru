@@ -1,0 +1,18 @@
+datasource db {
+  provider = "sqlite" 
+  url = "***"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Record {
+  id          Int      @id @default(autoincrement())
+  lineId      Int
+  statusCd    String
+  message     String
+  msgId       String
+  deletedAt   String?
+  createdAt   DateTime @default(now())
+}
