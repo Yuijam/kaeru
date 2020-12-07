@@ -1,14 +1,9 @@
-import {QueryResolvers, Resolvers} from '../generated/graphql';
+import {QueryResolvers} from '../generated/graphql';
+import {toDateStr} from 'shared/lib/dateFns';
 import {prisma} from '../db/prisma';
-export const query: QueryResolvers = {
-  records: async (parent: any, args: any, context: any) => {
+export const Query: QueryResolvers = {
+  records: async () => {
     const res = await prisma.record.findMany();
-    console.log(res);
-    const newres = res.map((r: any) => ({...r, createdAt: '2222', deletedAt: 'aaa'}));
-    return newres;
+    return res.map(r => ({...r, createdAt: toDateStr(r.createdAt), deletedAt: toDateStr(r.deletedAt)}));
   },
-};
-
-export default {
-  Query: query,
 };

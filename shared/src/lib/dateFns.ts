@@ -5,6 +5,11 @@ const formatPattern = {
   yyyyMMdd: 'yyyy-MM-dd',
 };
 
-const toDateStr = (dbDate: string, p = formatPattern.yyyyMMddHHmmss) => format(new Date(dbDate), p);
+const toDateStr = (dbDate: string | Date | number | null | undefined, p = formatPattern.yyyyMMddHHmmss) => {
+  if (!dbDate) {
+    return '';
+  }
+  return format(new Date(dbDate), p);
+};
 const nowStr = (p = formatPattern.yyyyMMddHHmmss) => format(new Date(), p);
 export {format, toDateStr, formatPattern, nowStr};
