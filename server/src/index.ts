@@ -13,6 +13,7 @@ const schema = makeExecutableSchema({
 
 const app = express();
 
+app.use(express.static(path.join(__dirname, '..', '/static/kaieru')));
 app.use('/graphql', bodyParser.json(), graphqlExpress({schema}));
 app.use('/graphiql', graphiqlExpress({endpointURL: '/graphql'}));
 app.listen(3000, () => {

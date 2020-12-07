@@ -14,3 +14,15 @@ services:
     environment: 
       - TZ=Asia/Tokyo
       - KAERU_ENV=production
+  server:
+    environment: 
+      - TZ=Asia/Tokyo
+      - KAERU_ENV=production
+    volumes:
+      - ~/kaeru_db:/usr/src/app/db
+    container_name: kaeru_server
+    build:
+      context: .
+      dockerfile: ./server/Dockerfile
+    ports:
+      - "3000:3000"

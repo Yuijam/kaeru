@@ -1,4 +1,3 @@
-import { Context as MyContext } from '../resolvers/context';
 import { GraphQLResolveInfo } from 'graphql';
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -124,11 +123,11 @@ export type ResolversParentTypes = ResolversObject<{
   Boolean: Scalars['Boolean'];
 }>;
 
-export type QueryResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
+export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
   records?: Resolver<Maybe<Array<ResolversTypes['Record']>>, ParentType, ContextType>;
 }>;
 
-export type RecordResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Record'] = ResolversParentTypes['Record']> = ResolversObject<{
+export type RecordResolvers<ContextType = any, ParentType extends ResolversParentTypes['Record'] = ResolversParentTypes['Record']> = ResolversObject<{
   id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   lineId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   statusCd?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -139,7 +138,7 @@ export type RecordResolvers<ContextType = MyContext, ParentType extends Resolver
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
-export type Resolvers<ContextType = MyContext> = ResolversObject<{
+export type Resolvers<ContextType = any> = ResolversObject<{
   Query?: QueryResolvers<ContextType>;
   Record?: RecordResolvers<ContextType>;
 }>;
@@ -149,4 +148,4 @@ export type Resolvers<ContextType = MyContext> = ResolversObject<{
  * @deprecated
  * Use "Resolvers" root object instead. If you wish to get "IResolvers", add "typesPrefix: I" to your config.
  */
-export type IResolvers<ContextType = MyContext> = Resolvers<ContextType>;
+export type IResolvers<ContextType = any> = Resolvers<ContextType>;
