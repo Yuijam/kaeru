@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^0.1100.2",
-    "@angular/cli": "~10.0.5",
+    "@angular/cli": "^11.0.3",
     "@angular/compiler-cli": "~10.0.6",
     "@graphql-codegen/cli": "^1.19.4",
     "@graphql-codegen/introspection": "^1.18.1",
