@@ -39,7 +39,7 @@ export class LineDesComponent implements OnInit {
 
   ngOnInit(): void {
     console.log('oninit');
-    this.desConfigs = this.des.map((p, idx) => {
+    this.desConfigs = this.des.map((p) => {
       const cfg: any = {};
       if (p.statusCd === 'NORMAL') {
         cfg.className = 'normal';
@@ -48,13 +48,6 @@ export class LineDesComponent implements OnInit {
       }
       const width = (p.time / this.totalHours) * this.totalWidth;
       cfg.width = width + 'px';
-      cfg.borderRadius = '0';
-      if (idx === 0) {
-        cfg.borderRadius = '5px 0 0 5px';
-      }
-      if (idx === this.des.length - 1) {
-        cfg.borderRadius = '0 5px 5px 0';
-      }
       return cfg;
     });
   }

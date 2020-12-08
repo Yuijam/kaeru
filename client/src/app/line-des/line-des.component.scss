@@ -1,7 +1,7 @@
 .line-des-body {
   // border:  1px solid red;
   border-radius: 5px;
-  background-color: #333333;
+  // background-color: #333333;
   padding-top: 0.2em;
   padding-left: 0.2em;
   padding-right: 0.2em;
@@ -9,13 +9,14 @@
   width: 300px;
   .item-div {
     float: left;
+    margin-left: 2px;
   }
   .normal {
     height: 1.4em;
-    background-color: #76FF03;
+    background-color: #80D5FF;
   }
   .in-trouble {
     height: 1.4em;
-    background-color: #FFEB3B;
+    background-color: #FF8D76;
   }
 }
