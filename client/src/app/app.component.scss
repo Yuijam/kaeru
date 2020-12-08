@@ -18,6 +18,14 @@
 
 .main-body {
   max-width: 600px;
+  height: 100%;
+  overflow-y: scroll;
   margin: 0 auto;
-  text-align: center;
+  .title {
+    text-align: center;
+  }
+}
+
+.main-body::-webkit-scrollbar {
+  display: none;
 }
