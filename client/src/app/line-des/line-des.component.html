@@ -1,0 +1,7 @@
+<div>
+  <div class="line-des-body">
+    <div *ngFor="let item of desConfigs" class="item-div" [ngClass]="item.className"
+      [ngStyle]="{'width': item.width, 'border-radius': item.borderRadius}">
+    </div>
+  </div>
+</div>
