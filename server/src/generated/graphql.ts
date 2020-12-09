@@ -3,6 +3,7 @@ export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
+export type RequireFields<T, K extends keyof T> = { [X in Exclude<keyof T, K>]?: T[X] } & { [P in K]-?: NonNullable<T[P]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -14,17 +15,21 @@ export type Scalars = {
 
 export type Query = {
   __typename?: 'Query';
-  records?: Maybe<Array<Record>>;
+  lineRecords?: Maybe<Array<Array<LineRecord>>>;
 };
 
-export type Record = {
-  __typename?: 'Record';
+
+export type QueryLineRecordsArgs = {
+  date?: Maybe<Scalars['String']>;
+};
+
+export type LineRecord = {
+  __typename?: 'LineRecord';
   id: Scalars['Int'];
   lineId: Scalars['Int'];
   statusCd: Scalars['String'];
   message: Scalars['String'];
   msgId: Scalars['String'];
-  deletedAt?: Maybe<Scalars['String']>;
   createdAt: Scalars['String'];
 };
 
@@ -108,39 +113,38 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 /** Mapping between all available schema types and the resolvers types */
 export type ResolversTypes = ResolversObject<{
   Query: ResolverTypeWrapper<{}>;
-  Record: ResolverTypeWrapper<Record>;
-  Int: ResolverTypeWrapper<Scalars['Int']>;
   String: ResolverTypeWrapper<Scalars['String']>;
+  LineRecord: ResolverTypeWrapper<LineRecord>;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
 }>;
 
 /** Mapping between all available schema types and the resolvers parents */
 export type ResolversParentTypes = ResolversObject<{
   Query: {};
-  Record: Record;
-  Int: Scalars['Int'];
   String: Scalars['String'];
+  LineRecord: LineRecord;
+  Int: Scalars['Int'];
   Boolean: Scalars['Boolean'];
 }>;
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
-  records?: Resolver<Maybe<Array<ResolversTypes['Record']>>, ParentType, ContextType>;
+  lineRecords?: Resolver<Maybe<Array<Array<ResolversTypes['LineRecord']>>>, ParentType, ContextType, RequireFields<QueryLineRecordsArgs, never>>;
 }>;
 
-export type RecordResolvers<ContextType = any, ParentType extends ResolversParentTypes['Record'] = ResolversParentTypes['Record']> = ResolversObject<{
+export type LineRecordResolvers<ContextType = any, ParentType extends ResolversParentTypes['LineRecord'] = ResolversParentTypes['LineRecord']> = ResolversObject<{
   id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   lineId?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   statusCd?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   message?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   msgId?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
-  deletedAt?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
   createdAt?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
 export type Resolvers<ContextType = any> = ResolversObject<{
   Query?: QueryResolvers<ContextType>;
-  Record?: RecordResolvers<ContextType>;
+  LineRecord?: LineRecordResolvers<ContextType>;
 }>;
 
 

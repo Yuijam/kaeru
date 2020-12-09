@@ -1,13 +1,12 @@
 type Query {
-  records: [Record!]
+  lineRecords(date: String): [[LineRecord!]!]
 }
 
-type Record {
+type LineRecord {
   id: Int!
   lineId: Int!
   statusCd: String!
   message: String!
   msgId: String!
-  deletedAt: String
   createdAt: String!
 }

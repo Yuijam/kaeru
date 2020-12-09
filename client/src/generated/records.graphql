@@ -1,11 +1,10 @@
-query GetRecords {
-  records {
+query GetLineRecords {
+  lineRecords {
     id
     msgId
-    lineId
     message
-    statusCd
     createdAt
-    deletedAt
+    statusCd
+    lineId
   }
 }

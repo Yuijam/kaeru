@@ -4,6 +4,11 @@ export type TLineConfig = {
   screenName: string;
 };
 
+export const getLineName = (lineId: number) => {
+  const cfg = lineConfigs.find(({id}) => id === lineId);
+  return cfg?.name || '';
+};
+
 export const lineConfigs: TLineConfig[] = [
   {
     id: 1,

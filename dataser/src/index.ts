@@ -15,4 +15,5 @@ const main = async () => {
     .catch(err => logger.error(`disconnect err ${err}`));
 };
 
+// main();
 setInterval(() => main(), 300000);

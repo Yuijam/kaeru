@@ -1,18 +1,24 @@
 import {RecordCreateInput} from '@prisma/client';
 import {prisma} from './prisma';
+import {setHours, endOfDay} from 'shared/lib/dateFns';
+import {startHour} from 'shared/config';
 
-export const getLatestRecord = async (lineId: number) => {
+export const getTodayRecords = async (lineId: number, date: Date) => {
   const res = await prisma.record.findMany({
     where: {
       lineId: {
         equals: lineId,
       },
+      createdAt: {
+        gte: setHours(date, startHour),
+        lte: endOfDay(date),
+      },
     },
     orderBy: {
-      createdAt: 'desc',
+      createdAt: 'asc',
     },
   });
-  return res.length ? res[0] : undefined;
+  return res;
 };
 
 export const addRecord = async (data: RecordCreateInput) => {

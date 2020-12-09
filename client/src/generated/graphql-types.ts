@@ -18,41 +18,44 @@ export type Scalars = {
 
 export type Query = {
   __typename?: 'Query';
-  records?: Maybe<Array<Record>>;
+  lineRecords?: Maybe<Array<Array<LineRecord>>>;
 };
 
-export type Record = {
-  __typename?: 'Record';
+
+export type QueryLineRecordsArgs = {
+  date?: Maybe<Scalars['String']>;
+};
+
+export type LineRecord = {
+  __typename?: 'LineRecord';
   id: Scalars['Int'];
   lineId: Scalars['Int'];
   statusCd: Scalars['String'];
   message: Scalars['String'];
   msgId: Scalars['String'];
-  deletedAt?: Maybe<Scalars['String']>;
   createdAt: Scalars['String'];
 };
 
-export type GetRecordsQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetLineRecordsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetRecordsQuery = (
+export type GetLineRecordsQuery = (
   { __typename?: 'Query' }
-  & { records?: Maybe<Array<(
-    { __typename?: 'Record' }
-    & Pick<Record, 'id' | 'msgId' | 'lineId' | 'message' | 'statusCd' | 'createdAt' | 'deletedAt'>
-  )>> }
+  & { lineRecords?: Maybe<Array<Array<(
+    { __typename?: 'LineRecord' }
+    & Pick<LineRecord, 'id' | 'msgId' | 'message' | 'createdAt' | 'statusCd' | 'lineId'>
+  )>>> }
 );
 
-export const GetRecordsDocument = gql`
-    query GetRecords {
-  records {
+export const GetLineRecordsDocument = gql`
+    query GetLineRecords {
+  lineRecords {
     id
     msgId
-    lineId
     message
-    statusCd
     createdAt
-    deletedAt
+    statusCd
+    lineId
   }
 }
     `;
@@ -60,8 +63,8 @@ export const GetRecordsDocument = gql`
   @Injectable({
     providedIn: 'root'
   })
-  export class GetRecordsGQL extends Apollo.Query<GetRecordsQuery, GetRecordsQueryVariables> {
-    document = GetRecordsDocument;
+  export class GetLineRecordsGQL extends Apollo.Query<GetLineRecordsQuery, GetLineRecordsQueryVariables> {
+    document = GetLineRecordsDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);

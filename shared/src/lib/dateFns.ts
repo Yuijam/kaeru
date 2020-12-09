@@ -1,4 +1,4 @@
-import {format} from 'date-fns';
+import {format, setHours, endOfDay, isValid, subHours} from 'date-fns';
 
 const formatPattern = {
   yyyyMMddHHmmss: 'yyyy-MM-dd HH:mm:ss',
@@ -12,4 +12,4 @@ const toDateStr = (dbDate: string | Date | number | null | undefined, p = format
   return format(new Date(dbDate), p);
 };
 const nowStr = (p = formatPattern.yyyyMMddHHmmss) => format(new Date(), p);
-export {format, toDateStr, formatPattern, nowStr};
+export {format, toDateStr, formatPattern, nowStr, setHours, endOfDay, isValid, subHours};

@@ -24,6 +24,10 @@
   .title {
     text-align: center;
   }
+  mat-panel-title {
+    width: 6em;
+    line-height: 2em;
+  }
 }
 
 .main-body::-webkit-scrollbar {
