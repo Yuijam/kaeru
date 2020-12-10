@@ -1,18 +1,18 @@
-datasource db {
-  provider = "sqlite" 
-  url      = "file:../../db/kaerudb.db"
-}
-
 generator client {
   provider = "prisma-client-js"
 }
 
+datasource db {
+  provider = "sqlite"
+  url      = "file:../../db/kaerudb.db"
+}
+
 model Record {
-  id          Int      @id @default(autoincrement())
-  lineId      Int
-  statusCd    String
-  message     String
-  msgId       String
-  deletedAt   String?
-  createdAt   DateTime @default(now())
+  id        Int      @id @default(autoincrement())
+  lineId    Int
+  statusCd  String
+  message   String
+  msgId     String
+  deletedAt String?
+  createdAt DateTime @default(now())
 }

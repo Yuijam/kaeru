@@ -7,4 +7,4 @@ docker rmi kaeru_server
 
 docker-compose up -d
 
-docker exec kaeru_dataser npm run prod-dbup
+docker exec kaeru_dataser npm run dbup

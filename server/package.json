@@ -6,8 +6,7 @@
   "scripts": {
     "s": "ts-node src/index.ts",
     "b": "tsc",
-    "prod-dbup": "echo yes | npx prisma migrate save --experimental && npx prisma migrate up --experimental && npx prisma generate",
-    "dbup": "npx prisma migrate save --experimental && npx prisma migrate up --experimental && npx prisma generate",
+    "dbup": "yarn run prisma migrate dev --preview-feature && yarn prisma generate",
     "codegen": "graphql-codegen --config codegen.yml",
     "init-shared": "cd ../shared && npm run init"
   },

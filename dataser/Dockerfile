@@ -6,14 +6,13 @@ COPY dataser /usr/src/app/dataser
 COPY shared /usr/src/app/shared
 
 WORKDIR /usr/src/app/dataser
-RUN npm install
+RUN yarn install
 WORKDIR /usr/src/app/shared
-RUN npm install
-RUN npm run setup
+RUN yarn run setup
 
 WORKDIR /usr/src/app/dataser
-RUN npm run prod-dbup
-RUN npm run b
+RUN yarn run dbup
+RUN yarn run b
 
 EXPOSE 5555
 CMD [ "node", "dist/index.js" ]
