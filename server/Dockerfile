@@ -13,19 +13,19 @@ WORKDIR /usr/src/app/server
 RUN yarn install
 
 WORKDIR /usr/src/app/client
-RUN npm install -g @angular/cli
-RUN npm install
-RUN npm run build
+RUN yarn global add @angular/cli
+RUN yarn install
+
+WORKDIR /usr/src/app/shared
+RUN npm run setup
+
+WORKDIR /usr/src/app/client
+RUN yarn run build
 RUN mv /usr/src/app/client/dist/kaieru /usr/src/app/server/static/kaieru
 RUN rm -rf /usr/src/app/client/
 
-
-WORKDIR /usr/src/app/shared
-RUN npm install
-RUN npm run setup
-
 WORKDIR /usr/src/app/server
-RUN npm run prod-dbup
+RUN yarn run prod-dbup
 
 EXPOSE 3000
-CMD [ "npm", "run", "s" ]
+CMD [ "yarn", "run", "s" ]
