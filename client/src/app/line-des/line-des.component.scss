@@ -1,10 +1,8 @@
 .line-des-body {
-  // border:  1px solid red;
-  border-radius: 5px;
-  // background-color: #333333;
-  padding-top: 0.2em;
-  padding-left: 0.2em;
-  padding-right: 0.2em;
+  border:  1px solid #333333;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   height: 1.8em;
   width: 300px;
   .item-div {

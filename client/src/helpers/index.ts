@@ -50,5 +50,17 @@ const toLineDes = (lineRecords: LineRecord[]): TLineDesData => {
   return res;
 };
 
-export const toLineData = (lineRecords: LineRecord[][]) =>
-  lineRecords.map((lineRecord) => toLineItemData(lineRecord));
+const realLen = (arr: any[]) =>
+  arr.reduce((acc, cur) => {
+    if (typeof cur === 'object') {
+      return Object.keys(cur).length > 0 ? acc + 1 : acc;
+    }
+    return acc + 1;
+  }, 0);
+
+export const toLineData = (lineRecords: LineRecord[][]) => {
+  if (realLen(lineRecords)) {
+    return lineRecords.map((lineRecord) => toLineItemData(lineRecord));
+  }
+  return [];
+};
