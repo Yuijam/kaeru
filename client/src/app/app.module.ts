@@ -13,8 +13,14 @@ import { DemoMaterialModule } from './material-module';
 import { CommonModule } from '@angular/common';
 import { LineDesComponent } from './line-des/line-des.component';
 import { ItemMsgListComponent } from './item-msg-list/item-msg-list.component';
+import { DatePickerComponent } from './date-picker/date-picker.component';
 @NgModule({
-  declarations: [AppComponent, LineDesComponent, ItemMsgListComponent],
+  declarations: [
+    AppComponent,
+    LineDesComponent,
+    ItemMsgListComponent,
+    DatePickerComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
