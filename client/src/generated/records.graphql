@@ -1,5 +1,5 @@
-query GetLineRecords {
-  lineRecords {
+query GetLineRecords($date: String) {
+  lineRecords(date: $date) {
     id
     msgId
     message

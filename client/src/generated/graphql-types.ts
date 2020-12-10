@@ -36,7 +36,9 @@ export type LineRecord = {
   createdAt: Scalars['String'];
 };
 
-export type GetLineRecordsQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetLineRecordsQueryVariables = Exact<{
+  date?: Maybe<Scalars['String']>;
+}>;
 
 
 export type GetLineRecordsQuery = (
@@ -48,8 +50,8 @@ export type GetLineRecordsQuery = (
 );
 
 export const GetLineRecordsDocument = gql`
-    query GetLineRecords {
-  lineRecords {
+    query GetLineRecords($date: String) {
+  lineRecords(date: $date) {
     id
     msgId
     message

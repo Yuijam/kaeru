@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { MatAccordion } from '@angular/material/expansion';
 import { toLineData } from '../helpers';
 import { TLineItemData } from '../types';
+import { toDateOnly } from 'shared/lib/dateFns';
 
 @Component({
   selector: 'app-root',
@@ -22,9 +23,14 @@ export class AppComponent implements OnInit {
   constructor(private getRecordsGQL: GetLineRecordsGQL) {}
 
   ngOnInit() {
-    console.log('on init');
+    this.fetchData();
+  }
+
+  fetchData(date: Date | string = new Date()) {
     this.getRecordsGQL
-      .watch()
+      .watch({
+        date: toDateOnly(date),
+      })
       .valueChanges.pipe(
         map((res) => res.data.lineRecords),
         map((r) => toLineData(r))

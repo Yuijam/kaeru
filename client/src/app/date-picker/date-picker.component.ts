@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { startDate } from 'shared/config';
 import { isAfter } from 'shared/lib/dateFns';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-date-picker',
@@ -9,13 +10,13 @@ import { isAfter } from 'shared/lib/dateFns';
   styleUrls: ['./date-picker.component.scss'],
 })
 export class DatePickerComponent {
-  date = new FormControl(new Date(2020, 11, 15));
+  @Output() dateChange = new EventEmitter<Date>();
+  date = new FormControl(new Date());
 
-  constructor() {}
-  myFilter = (d: Date | null): boolean => {
-    // const day = (d || new Date()).getDay();
-    // // Prevent Saturday and Sunday from being selected.
-    // return day !== 0 && day !== 6;
-    return isAfter(d, startDate);
-  };
+  myFilter = (d: Date | null): boolean => isAfter(d, startDate);
+
+  onDataChange(event: MatDatepickerInputEvent<Date>) {
+    console.log(event.value);
+    this.dateChange.emit(event.value);
+  }
 }
