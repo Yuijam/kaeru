@@ -10,11 +10,10 @@ import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DemoMaterialModule } from './material-module';
-import { LineItemComponent } from './line-item/line-item.component';
 import { CommonModule } from '@angular/common';
 import { LineDesComponent } from './line-des/line-des.component';
 @NgModule({
-  declarations: [AppComponent, LineDesComponent, LineItemComponent],
+  declarations: [AppComponent, LineDesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
