@@ -1,0 +1,10 @@
+query GetLineRecords($date: String) {
+  lineRecords(date: $date) {
+    id
+    msgId
+    message
+    createdAt
+    statusCd
+    lineId
+  }
+}

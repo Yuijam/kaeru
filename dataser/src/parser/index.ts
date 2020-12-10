@@ -1,10 +1,22 @@
 import {lineConfigs, TLineConfig} from 'shared/config';
 import {toTLApi, toTwitterPromise, parseTweets, parsedTweetToDB, logger} from '../helper';
-import {addRecord, getLatestRecord} from '../db/record';
+import {addRecord, getTodayLatestRecord} from '../db/record';
+import {TParsedTweet} from '../types';
+import {Record} from '@prisma/client';
 
 type TFetchRes = {
   res: 'OK' | 'FAILED';
   msg: string;
+};
+
+const shouldAdd = (latestData: TParsedTweet, latestRecord: Record | undefined) => {
+  if (!latestRecord) {
+    return true;
+  }
+  if (latestData.id_str === latestRecord.msgId) {
+    return false;
+  }
+  return latestData.statusCd === 'IN_TROUBLE' || latestRecord.statusCd === 'IN_TROUBLE';
 };
 
 const fetchData = async (cfg: TLineConfig): Promise<TFetchRes> => {
@@ -16,9 +28,9 @@ const fetchData = async (cfg: TLineConfig): Promise<TFetchRes> => {
     const tweets = data.map(({text, created_at, id_str}) => ({created_at, text, id_str}));
     const parsedRes = parseTweets(tweets);
     const latestData = parsedRes[0];
-    const latestRecord = await getLatestRecord(cfg.id);
+    const latestRecord = await getTodayLatestRecord(cfg.id);
     logger.info(`compare ${latestData.statusCd}, ${latestRecord?.statusCd}`);
-    if (!latestRecord || latestData.statusCd === 'IN_TROUBLE' || latestRecord.statusCd === 'IN_TROUBLE') {
+    if (shouldAdd(latestData, latestRecord)) {
       logger.info('add record');
       await addRecord(parsedTweetToDB(latestData, cfg.id));
     }

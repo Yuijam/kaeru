@@ -1,43 +1,28 @@
 version: '3'
 services:
-  db:
-    image: mysql:5.7.32
-    volumes:
-      - ~/kaeru_db_data:/var/lib/mysql
-      - ./db/init.sql:/data/application/init.sql
-    environment:
-      - TZ=Asia/Tokyo
-      - MYSQL_ROOT_PASSWORD=root
-    restart: always
-    container_name: kaerudb
-    command: 
-      --character-set-server=utf8mb4
-      --collation-server=utf8mb4_general_ci
-      --init-file /data/application/init.sql
-    ports:
-      - "3306:3306"
-    expose: 
-      - "3306"
   dataser:
-    depends_on:
-      - db
-    restart: always
     volumes:
       - ~/kaeru_dataser_log:/usr/src/app/dataser/log
+      - ~/kaeru_db:/usr/src/app/db
     container_name: kaeru_dataser
+    user: root
     build:
       context: .
       dockerfile: ./dataser/Dockerfile
     ports:
-      - "3300:3300"
-    expose: 
-      - "3300"
+      - "5555:5555"
     environment: 
+      - TZ=Asia/Tokyo
       - KAERU_ENV=production
-    # healthcheck:
-    #   test: ["CMD", "curl", "-f", "http://localhost:3300"]
-    #   interval: 10s
-    #   timeout: 20s
-    #   retries: 3 
-    links:
-      - "db:kaeru_db"
+  server:
+    environment: 
+      - TZ=Asia/Tokyo
+      - KAERU_ENV=production
+    volumes:
+      - ~/kaeru_db:/usr/src/app/db
+    container_name: kaeru_server
+    build:
+      context: .
+      dockerfile: ./server/Dockerfile
+    ports:
+      - "3000:3000"

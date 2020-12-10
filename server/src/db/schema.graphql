@@ -1,0 +1,12 @@
+type Query {
+  lineRecords(date: String): [[LineRecord!]!]
+}
+
+type LineRecord {
+  id: Int!
+  lineId: Int!
+  statusCd: String!
+  message: String!
+  msgId: String!
+  createdAt: String!
+}
