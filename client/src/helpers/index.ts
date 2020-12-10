@@ -4,6 +4,7 @@ import { isValid, setHours, nowStr } from 'shared/lib/dateFns';
 import { startHour, getLineName } from 'shared/config';
 
 export const distanceHours = (d1: string | Date, d2: string | Date) => {
+  console.log('dis', d1, d2);
   const date1 = new Date(d1);
   const date2 = new Date(d2);
   if (!isValid(date1) || !isValid(date2)) {
@@ -11,20 +12,24 @@ export const distanceHours = (d1: string | Date, d2: string | Date) => {
     throw 'toLineDes err';
   }
   const hours = Math.abs(date1.getTime() - date2.getTime()) / 3600000;
+  console.log('hours', hours, parseFloat(hours.toFixed(1)));
   return parseFloat(hours.toFixed(1));
 };
 
 const toPeriod = (pre: LineRecord, cur: LineRecord): TPeriod => {
   if (!pre) {
-    const hours = distanceHours(setHours(new Date(), startHour), cur.createdAt);
-    return { time: hours, statusCd: cur.statusCd };
+    const hours = distanceHours(
+      setHours(new Date(nowStr().split(' ')[0]), startHour),
+      cur.createdAt
+    );
+    return { time: hours, statusCd: 'NORMAL' };
   }
   const hours = distanceHours(pre.createdAt, cur.createdAt);
-  return { time: hours, statusCd: cur.statusCd };
+  return { time: hours, statusCd: pre.statusCd };
 };
 
 const getLineMsgList = (lineRecords: LineRecord[]): string[] =>
-  lineRecords.map(({ message }) => message);
+  lineRecords.map(({ message }) => message).reverse();
 
 export const toLineItemData = (lineRecords: LineRecord[]): TLineItemData => {
   if (lineRecords.length < 1) {

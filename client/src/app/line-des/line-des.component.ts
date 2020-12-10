@@ -34,6 +34,7 @@ export class LineDesComponent implements OnInit {
   ngOnInit(): void {
     console.log('oninit');
     this.desConfigs = this.lineDesData.map((desData) => {
+      console.log(desData.time);
       const className = desData.statusCd === 'NORMAL' ? 'normal' : 'in-trouble';
       const width = (desData.time / this.totalHours) * this.totalWidth + 'px';
       return { className, width };
