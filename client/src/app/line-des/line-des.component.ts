@@ -32,9 +32,7 @@ export class LineDesComponent implements OnInit {
   desConfigs: TPeriodCfg[] = [];
 
   ngOnInit(): void {
-    console.log('oninit');
     this.desConfigs = this.lineDesData.map((desData) => {
-      console.log(desData.time);
       const className = desData.statusCd === 'NORMAL' ? 'normal' : 'in-trouble';
       const width = (desData.time / this.totalMin) * this.totalWidth + 'px';
       return { className, width };
