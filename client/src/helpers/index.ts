@@ -23,13 +23,17 @@ const toPeriod = (pre: LineRecord, cur: LineRecord): TPeriod => {
   return { time: hours, statusCd: cur.statusCd };
 };
 
+const getLineMsgList = (lineRecords: LineRecord[]): string[] =>
+  lineRecords.map(({ message }) => message);
+
 export const toLineItemData = (lineRecords: LineRecord[]): TLineItemData => {
   if (lineRecords.length < 1) {
     return undefined;
   }
   const lineName = getLineName(lineRecords[0].lineId);
   const lineDes = toLineDes(lineRecords);
-  return { lineName, lineDes };
+  const lineMsgList = getLineMsgList(lineRecords);
+  return { lineName, lineDes, lineMsgList };
 };
 
 const toNowLineRecords = (lineRecords: LineRecord[]): LineRecord[] => {

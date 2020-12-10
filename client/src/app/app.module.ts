@@ -12,8 +12,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { DemoMaterialModule } from './material-module';
 import { CommonModule } from '@angular/common';
 import { LineDesComponent } from './line-des/line-des.component';
+import { ItemMsgListComponent } from './item-msg-list/item-msg-list.component';
 @NgModule({
-  declarations: [AppComponent, LineDesComponent],
+  declarations: [AppComponent, LineDesComponent, ItemMsgListComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

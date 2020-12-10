@@ -8,6 +8,7 @@ export type TLineDesData = TPeriod[];
 export type TLineItemData = {
   lineName: string;
   lineDes: TLineDesData;
+  lineMsgList: string[];
 };
 
 export type TPeriodCfg = {
