@@ -1,6 +1,6 @@
 import {QueryResolvers} from '../generated/graphql';
-import {toDateStr, isValid} from 'shared/lib/dateFns';
-import {lineConfigs} from 'shared/config';
+import {toDateStr, isValid} from '../helper';
+import {lineConfigs} from '../config';
 import {getTodayRecords} from '../db/record';
 
 export const Query: QueryResolvers = {
