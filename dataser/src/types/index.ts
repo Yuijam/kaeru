@@ -1,5 +1,3 @@
-import {TRunningStatus} from 'shared/model';
-
 export type TTweet = {
   id_str: string;
   created_at: string;
@@ -9,3 +7,5 @@ export type TTweet = {
 export type TParsedTweet = TTweet & {
   statusCd: TRunningStatus;
 };
+
+export type TRunningStatus = 'IN_TROUBLE' | 'NORMAL' | 'UNKNOWN';

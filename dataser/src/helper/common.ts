@@ -1,7 +1,6 @@
 import axios, {AxiosResponse} from 'axios';
 // import {methods, recievers} from '../config';
-import {TTweet, TParsedTweet} from '../types';
-import {TRunningStatus} from 'shared/model';
+import {TTweet, TParsedTweet, TRunningStatus} from '../types';
 import {logger} from './logger';
 
 const baseTlUrl = 'https://api.twitter.com/1.1/statuses/user_timeline.json?';

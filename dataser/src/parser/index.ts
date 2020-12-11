@@ -1,4 +1,4 @@
-import {lineConfigs, TLineConfig} from 'shared/config';
+import {lineConfigs, TLineConfig} from '../config';
 import {toTLApi, toTwitterPromise, parseTweets, parsedTweetToDB, logger} from '../helper';
 import {addRecord, getTodayLatestRecord} from '../db/record';
 import {TParsedTweet} from '../types';

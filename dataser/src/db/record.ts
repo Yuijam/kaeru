@@ -1,6 +1,6 @@
 import {RecordCreateInput} from '@prisma/client';
 import {prisma} from './prisma';
-import {setHours, endOfDay} from 'shared/lib/dateFns';
+import {setHours, endOfDay} from '../helper';
 
 export const getTodayLatestRecord = async (lineId: number) => {
   const res = await prisma.record.findMany({
