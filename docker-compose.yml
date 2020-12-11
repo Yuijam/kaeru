@@ -3,7 +3,7 @@ services:
   dataser:
     restart: always
     volumes:
-      - ~/kaeru_dataser_log:/usr/src/app/dataser/log
+      - ~/kaeru_dataser_log:/usr/src/app/log
       - ~/kaeru_db:/usr/src/app/db
     container_name: kaeru_dataser
     user: root
