@@ -1,18 +1,10 @@
 FROM node:12.16.0-alpine
 
-RUN mkdir -p /usr/src/app
-RUN mkdir -p /usr/src/app/db
-COPY dataser /usr/src/app/dataser
-COPY shared /usr/src/app/shared
+RUN mkdir -p /usr/src/app && mkdir -p /usr/src/app/db
+COPY dataser /usr/src/app
 
-WORKDIR /usr/src/app/dataser
-RUN yarn install
-WORKDIR /usr/src/app/shared
-RUN yarn run setup
-
-WORKDIR /usr/src/app/dataser
-RUN yarn run dbup
-RUN yarn run b
+WORKDIR /usr/src/app
+RUN yarn install && yarn run dbup
 
 EXPOSE 5555
-CMD [ "node", "dist/index.js" ]
+CMD [ "yarn", "run", "s" ]
