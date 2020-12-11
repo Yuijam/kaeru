@@ -9,6 +9,7 @@ WORKDIR /usr/src/app/client
 RUN yarn global add @angular/cli && \
     yarn install && \
     yarn run build && \
+    yarn global remove @angular/cli && \
     mv /usr/src/app/client/dist/kaieru /usr/src/app/server/static/kaieru && \
     rm -rf /usr/src/app/client/
 
