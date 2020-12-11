@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 import { MatAccordion } from '@angular/material/expansion';
 import { toLineData } from '../helpers';
 import { TLineItemData } from '../types';
-import { toDateOnly } from 'shared/lib/dateFns';
+import { toDateOnly } from '../helpers';
 
 @Component({
   selector: 'app-root',
