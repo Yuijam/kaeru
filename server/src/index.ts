@@ -13,8 +13,7 @@ if (result.error) {
   throw result.error;
 }
 
-// setInterval(() => dataser(), 300000);
-setInterval(() => dataser(), 20000);
+setInterval(() => dataser(), 300000);
 
 const schema = makeExecutableSchema({
   typeDefs: fs.readFileSync(path.join(__dirname, '/db/schema.graphql'), 'utf8'),
