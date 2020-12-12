@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { startDate } from 'shared/config';
-import { isAfter } from 'shared/lib/dateFns';
+import { startDate } from '../../helpers';
+import { isAfter } from '../../helpers';
 import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
