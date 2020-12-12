@@ -5,6 +5,16 @@ import {makeExecutableSchema} from 'graphql-tools';
 import resolvers from './resolvers';
 import fs from 'fs';
 import path from 'path';
+import dotenv from 'dotenv';
+import dataser from './dataser';
+
+const result = dotenv.config({path: path.join(__dirname, '..', '.env')});
+if (result.error) {
+  throw result.error;
+}
+
+// setInterval(() => dataser(), 300000);
+setInterval(() => dataser(), 20000);
 
 const schema = makeExecutableSchema({
   typeDefs: fs.readFileSync(path.join(__dirname, '/db/schema.graphql'), 'utf8'),

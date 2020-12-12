@@ -3,6 +3,11 @@ import {prisma} from './prisma';
 import {setHours, endOfDay} from '../helper';
 import {startHour} from '../config';
 
+export const getTodayLatestRecord = async (lineId: number) => {
+  const res = await getTodayRecords(lineId, new Date());
+  return res.length ? res[res.length - 1] : undefined;
+};
+
 export const getTodayRecords = async (lineId: number, date: Date) => {
   const res = await prisma.record.findMany({
     where: {
