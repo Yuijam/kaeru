@@ -1,6 +1,6 @@
 import { TLineDesData, TPeriod, TLineItemData } from '../types';
 import { LineRecord } from '../generated/graphql-types';
-import { isValid, setHours, nowStr } from './date';
+import { isValid, setHours, periodEndTime, toDateOnly } from './date';
 import { startHour, getLineName } from './config';
 
 export const distanceMins = (d1: string | Date, d2: string | Date) => {
@@ -17,7 +17,7 @@ export const distanceMins = (d1: string | Date, d2: string | Date) => {
 const toPeriod = (pre: LineRecord, cur: LineRecord): TPeriod => {
   if (!pre) {
     const mins = distanceMins(
-      setHours(new Date(nowStr().split(' ')[0]), startHour),
+      setHours(toDateOnly(cur.createdAt), startHour),
       cur.createdAt
     );
     return { time: mins, statusCd: 'NORMAL' };
@@ -44,7 +44,8 @@ const toNowLineRecords = (lineRecords: LineRecord[]): LineRecord[] => {
     return [];
   }
   const last = lineRecords[lineRecords.length - 1];
-  const nowLast = { ...last, createdAt: nowStr() };
+  const first = lineRecords[0];
+  const nowLast = { ...last, createdAt: periodEndTime(first.createdAt) };
   return [...lineRecords, nowLast];
 };
 
