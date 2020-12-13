@@ -9,8 +9,8 @@ import {
 } from 'date-fns';
 
 const formatPattern = {
-  yyyyMMddHHmmss: 'YYYY-MM-DD HH:mm:ss',
-  yyyyMMdd: 'YYYY-MM-DD',
+  yyyyMMddHHmmss: 'yyyy-MM-dd HH:mm:ss',
+  yyyyMMdd: 'yyyy-MM-dd',
 };
 
 const toDateStr = (
@@ -33,8 +33,9 @@ const toDateOnly = (date: string | Date | number | null | undefined) => {
 const nowStr = (p = formatPattern.yyyyMMddHHmmss) => format(new Date(), p);
 
 export const periodEndTime = (today: string | number | Date) => {
-  if (!isToday(today)) {
-    return toDateStr(endOfDay(today));
+  const todayDate = new Date(today);
+  if (!isToday(todayDate)) {
+    return toDateStr(endOfDay(todayDate));
   }
   return nowStr();
 };

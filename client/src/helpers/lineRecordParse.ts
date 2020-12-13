@@ -17,7 +17,7 @@ export const distanceMins = (d1: string | Date, d2: string | Date) => {
 const toPeriod = (pre: LineRecord, cur: LineRecord): TPeriod => {
   if (!pre) {
     const mins = distanceMins(
-      setHours(toDateOnly(cur.createdAt), startHour),
+      setHours(new Date(toDateOnly(cur.createdAt)), startHour),
       cur.createdAt
     );
     return { time: mins, statusCd: 'NORMAL' };
