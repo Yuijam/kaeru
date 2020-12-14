@@ -3,6 +3,7 @@ import {toTLApi, toTwitterPromise, parseTweets, parsedTweetToDB, logger} from '.
 import {addRecord, getTodayLatestRecord} from '../../db/record';
 import {TParsedTweet} from '../../helper';
 import {Record} from '@prisma/client';
+import {isToday} from 'date-fns';
 
 type TFetchRes = {
   res: 'OK' | 'FAILED';
@@ -10,6 +11,9 @@ type TFetchRes = {
 };
 
 const shouldAdd = (latestData: TParsedTweet, latestRecord: Record | undefined) => {
+  if (!isToday(new Date(latestData.created_at))) {
+    return false;
+  }
   if (!latestRecord) {
     return true;
   }
