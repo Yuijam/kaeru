@@ -1,8 +1,8 @@
 import {format, setHours, endOfDay, isValid, subHours, isAfter} from 'date-fns';
 
 const formatPattern = {
-  yyyyMMddHHmmss: 'yyyy-MM-dd HH:mm:ss',
-  yyyyMMdd: 'yyyy-MM-dd',
+  yyyyMMddHHmmss: 'yyyy/MM/dd HH:mm:ss',
+  yyyyMMdd: 'yyyy/MM/dd',
 };
 
 const toDateStr = (dbDate: string | Date | number | null | undefined, p = formatPattern.yyyyMMddHHmmss) => {
