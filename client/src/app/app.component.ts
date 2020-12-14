@@ -23,6 +23,12 @@ export class AppComponent implements OnInit {
   constructor(private getRecordsGQL: GetLineRecordsGQL) {}
 
   ngOnInit() {
+    const ua = navigator.userAgent;
+    const a = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(
+      ua
+    );
+    console.log(a);
+    // alert(a);
     this.fetchData();
   }
 
