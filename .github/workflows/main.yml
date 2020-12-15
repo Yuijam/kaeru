@@ -22,5 +22,5 @@ jobs:
   
       # Runs a single command using the runners shell
       - name: gen env file
-        run: echo ${{ secrets.TWITTER_BEARER_TOKEN }}
+        run: echo "hello world" && echo ${{ secrets.TWITTER_BEARER_TOKEN }}
 
