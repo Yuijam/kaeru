@@ -6,7 +6,6 @@ import {getTodayRecords} from '../db/record';
 export const Query: QueryResolvers = {
   lineRecords: async (parent, args) => {
     if (args.date && !isValid(new Date(args.date))) {
-      console.log('returen;ll');
       return [];
     }
     const queryDate = args.date ? new Date(args.date) : new Date();
