@@ -23,7 +23,5 @@ jobs:
       # Runs a single command using the runners shell
       - name: gen env file
         run: |
-          touch .env
-          echo TWITTER_BEARER_TOKEN=${{ secrets.TWITTER_BEARER_TOKEN }} >> .env
-          cat .env
+          cat push.sh
 
