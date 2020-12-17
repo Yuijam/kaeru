@@ -1,4 +1,5 @@
 import {format, setHours, endOfDay, isValid, subHours, isAfter} from 'date-fns';
+import {startHour} from '../config';
 
 const formatPattern = {
   yyyyMMddHHmmss: 'yyyy/MM/dd HH:mm:ss',
@@ -20,4 +21,17 @@ const toDateOnly = (dbDate: string | Date | number | null | undefined, p = forma
   return dateStr.split(' ')[0];
 };
 const nowStr = (p = formatPattern.yyyyMMddHHmmss) => format(new Date(), p);
-export {format, toDateStr, formatPattern, nowStr, setHours, endOfDay, isValid, subHours, isAfter, toDateOnly};
+const startChecingDateStr = () => toDateStr(setHours(new Date(toDateOnly(new Date())), startHour));
+export {
+  format,
+  toDateStr,
+  formatPattern,
+  nowStr,
+  setHours,
+  endOfDay,
+  isValid,
+  subHours,
+  isAfter,
+  toDateOnly,
+  startChecingDateStr,
+};
