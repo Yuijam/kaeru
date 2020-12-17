@@ -21,7 +21,12 @@ jobs:
       - uses: actions/checkout@v2
   
       # Runs a single command using the runners shell
-      - name: gen env file
+      - name: build and push image
         run: |
-          cat push.sh
+          echo TWITTER_BEARER_TOKEN=${{secrets.TWITTER_BEARER_TOKEN}} >> .env
+          docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
+          docker build -t kaeru .
+          docker tag kaeru:latest ${{secrets.DOCKER_REPO}}:latest
+          docker image push ${{secrets.DOCKER_REPO}}:latest
+
 
