@@ -1,6 +1,6 @@
 import {QueryResolvers} from '../generated/graphql';
 import {toDateStr, isValid, startChecingDateStr} from '../helper';
-import {lineConfigs} from '../config';
+import {lineConfigs, isCheckingTime} from '../config';
 import {getTodayRecords} from '../db/record';
 import {LineRecord} from '../generated/graphql';
 
@@ -17,7 +17,7 @@ export const Query: QueryResolvers = {
     const res = await Promise.all(
       lineConfigs.map(async ({id}) => {
         const todayRecords = await getTodayRecords(id, queryDate);
-        if (!todayRecords.length) {
+        if (!todayRecords.length && isCheckingTime()) {
           return initRecords(id);
         }
         return todayRecords.map(r => ({...r, createdAt: toDateStr(r.createdAt)}));
