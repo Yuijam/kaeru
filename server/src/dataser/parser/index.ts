@@ -1,4 +1,4 @@
-import {lineConfigs, TLineConfig} from '../../config';
+import {lineConfigs, TLineConfig, isCheckingTime} from '../../config';
 import {toTLApi, toTwitterPromise, parseTweets, parsedTweetToDB, logger} from '../../helper';
 import {addRecord, getTodayLatestRecord} from '../../db/record';
 import {TParsedTweet} from '../../helper';
@@ -15,12 +15,17 @@ const shouldAdd = (latestData: TParsedTweet, latestRecord: Record | undefined) =
     return false;
   }
   if (!latestRecord) {
+    logger.info(`add for latestRecord is undefine`);
     return true;
   }
   if (latestData.id_str === latestRecord.msgId) {
     return false;
   }
-  return latestData.statusCd === 'IN_TROUBLE' || latestRecord.statusCd === 'IN_TROUBLE';
+  const res = latestData.statusCd === 'IN_TROUBLE' || latestRecord.statusCd === 'IN_TROUBLE';
+  if (res) {
+    logger.info(`add for status is different`);
+  }
+  return res;
 };
 
 const fetchData = async (cfg: TLineConfig): Promise<TFetchRes> => {
@@ -35,7 +40,6 @@ const fetchData = async (cfg: TLineConfig): Promise<TFetchRes> => {
     const latestRecord = await getTodayLatestRecord(cfg.id);
     logger.info(`compare ${latestData.statusCd}, ${latestRecord?.statusCd}`);
     if (shouldAdd(latestData, latestRecord)) {
-      logger.info('add record');
       await addRecord(parsedTweetToDB(latestData, cfg.id));
     }
     logger.info(`parse ${cfg.name} ok`);
@@ -47,6 +51,9 @@ const fetchData = async (cfg: TLineConfig): Promise<TFetchRes> => {
 };
 
 export default async () => {
+  if (!isCheckingTime()) {
+    return;
+  }
   const promises = lineConfigs.map(cfg => fetchData(cfg));
   const results = await Promise.all(promises);
   const failedResults = results.filter(({res}) => res === 'FAILED');
