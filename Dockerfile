@@ -4,12 +4,12 @@ RUN mkdir -p /usr/src/app/client && mkdir -p /usr/src/app/server
 WORKDIR /usr/src/app/client
 COPY client .
 RUN yarn global add @angular/cli && \
-    yarn install && \
+    yarn install --frozen-lockfile && \
     yarn run build
 
 WORKDIR /usr/src/app/server
 COPY server .
-RUN yarn install --production=true && yarn run dbup && mv /usr/src/app/client/dist ./static
+RUN yarn install --frozen-lockfile --production=true && yarn run dbup && mv /usr/src/app/client/dist ./static
 
 FROM node:12.16.0-alpine
 WORKDIR /usr/src/app
