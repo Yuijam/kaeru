@@ -11,7 +11,7 @@ export class IsSpDirective {
     const isSp = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(
       navigator.userAgent
     );
-    if (!isSp) {
+    if (isSp) {
       this.viewContainer.createEmbeddedView(this.templateRef);
     } else {
       this.viewContainer.clear();
