@@ -11,15 +11,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DemoMaterialModule } from './material-module';
 import { CommonModule } from '@angular/common';
-import { LineDesComponent } from './line-des/line-des.component';
-import { ItemMsgListComponent } from './item-msg-list/item-msg-list.component';
-import { DatePickerComponent } from './date-picker/date-picker.component';
+import { LineDesComponent } from './components/line-des/line-des.component';
+import { ItemMsgListComponent } from './components/item-msg-list/item-msg-list.component';
+import { DatePickerComponent } from './components/date-picker/date-picker.component';
+import { IsSpDirective } from './directives/isSp/is-sp.directive';
 @NgModule({
   declarations: [
     AppComponent,
     LineDesComponent,
     ItemMsgListComponent,
     DatePickerComponent,
+    IsSpDirective,
   ],
   imports: [
     BrowserModule,

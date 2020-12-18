@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TLineDesData, TPeriodCfg } from '../../types';
+import { TLineDesData, TPeriodCfg } from '../../../types';
 
 @Component({
   selector: 'app-line-des',

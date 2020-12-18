@@ -1,7 +1,7 @@
 .main-body {
   max-width: 600px;
   height: 100%;
-  overflow-y: scroll;
+  // overflow-y: scroll;
   margin: 0 auto;
   .header {
     position: relative;
@@ -16,6 +16,6 @@
   }
 }
 
-.main-body::-webkit-scrollbar {
-  display: none;
-}
+// .main-body::-webkit-scrollbar {
+//   display: none;
+// }
