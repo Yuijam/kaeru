@@ -37,7 +37,9 @@ export const periodEndTime = (today: string | number | Date) => {
     typeof today === 'string' || typeof today === 'number'
       ? new Date(today)
       : today;
+  console.log('periodEndTime', today);
   if (!isToday(date)) {
+    console.log('is not today', date);
     return toDateStr(endOfDay(date));
   }
   return nowStr();
