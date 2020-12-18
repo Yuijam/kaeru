@@ -17,7 +17,6 @@ export class DatePickerComponent {
     isAfter(d, startDate) && isAfter(endOfDay(new Date()), d);
 
   onDataChange(event: MatDatepickerInputEvent<Date>) {
-    console.log(event.value);
     this.dateChange.emit(event.value);
   }
 }
