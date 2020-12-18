@@ -21,7 +21,7 @@ const toDateOnly = (dbDate: string | Date | number | null | undefined, p = forma
   return dateStr.split(' ')[0];
 };
 const nowStr = (p = formatPattern.yyyyMMddHHmmss) => format(new Date(), p);
-const startChecingDateStr = () => toDateStr(setHours(new Date(toDateOnly(new Date())), startHour));
+const startCheckingDateStr = (date: Date) => toDateStr(setHours(new Date(toDateOnly(date)), startHour));
 export {
   format,
   toDateStr,
@@ -33,5 +33,5 @@ export {
   subHours,
   isAfter,
   toDateOnly,
-  startChecingDateStr,
+  startCheckingDateStr,
 };
