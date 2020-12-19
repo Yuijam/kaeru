@@ -17,3 +17,23 @@
     background-color: #FF8D76;
   }
 }
+
+.sp-line-des-body {
+  border:  1px solid #333333;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 1.8em;
+  width: 200px;
+  .item-div {
+    float: left;
+  }
+  .normal {
+    height: 1.4em;
+    background-color: #80D5FF;
+  }
+  .in-trouble {
+    height: 1.4em;
+    background-color: #FF8D76;
+  }
+}
