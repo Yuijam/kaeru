@@ -23,11 +23,6 @@ export class AppComponent implements OnInit {
   constructor(private getRecordsGQL: GetLineRecordsGQL) {}
 
   ngOnInit() {
-    // const ua = navigator.userAgent;
-    // const a = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(
-    //   ua
-    // );
-    // alert(a);
     this.fetchData();
   }
 
@@ -37,8 +32,8 @@ export class AppComponent implements OnInit {
         date: toDateOnly(date),
       })
       .valueChanges.pipe(
-        map((res) => res.data.lineRecords),
-        map((r) => toLineData(r))
+        map(({ data }) => data),
+        map(({ lineRecords }) => toLineData(lineRecords))
       )
       .subscribe((r) => (this.lineData = r));
   }
