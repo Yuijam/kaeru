@@ -12,7 +12,10 @@ export class IfDeviceDirective {
   ) {}
 
   @Input() set appIfDevice(device: 'pc' | 'sp') {
-    if (device === 'sp' && this.isSpService.isSp) {
+    if (
+      (device === 'sp' && this.isSpService.isSp) ||
+      (device === 'pc' && !this.isSpService.isSp)
+    ) {
       this.viewContainer.createEmbeddedView(this.templateRef);
     } else {
       this.viewContainer.clear();

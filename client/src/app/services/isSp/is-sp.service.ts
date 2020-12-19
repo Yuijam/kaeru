@@ -7,10 +7,10 @@ export class IsSpService {
   _isSp = false;
 
   constructor() {
-    const isSp = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(
+    this.isSp = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(
       navigator.userAgent
     );
-    this.isSp = !isSp;
+    console.log('this.isSp', this.isSp);
   }
 
   get isSp() {
