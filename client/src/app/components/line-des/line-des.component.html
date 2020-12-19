@@ -1,0 +1,13 @@
+<div *appIfDevice="'pc'" class="line-des-body">
+  <div>
+    <div *ngFor="let item of desConfigs" class="item-div" [ngClass]="item.className" [ngStyle]="{'width': item.width}">
+    </div>
+  </div>
+</div>
+
+<div *appIfDevice="'sp'" class="sp-line-des-body">
+  <div>
+    <div *ngFor="let item of desConfigs" class="item-div" [ngClass]="item.className" [ngStyle]="{'width': item.width}">
+    </div>
+  </div>
+</div>

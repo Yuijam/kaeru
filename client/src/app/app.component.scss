@@ -1,21 +1,44 @@
-.main-body {
-  max-width: 600px;
-  height: 100%;
-  overflow-y: scroll;
-  margin: 0 auto;
-  .header {
-    position: relative;
-    .title {
-      text-align: center;
+.main-container {
+  margin-right: calc(100% - 100vw);
+  .main-content {
+    max-width: 600px;
+    height: 100%;
+    margin: 0 auto;
+    .header {
+      position: relative;
+      .title {
+        text-align: center;
+        line-height: 1.6em;
+      }
     }
-  }
-  
-  mat-panel-title {
-    width: 6em;
-    line-height: 2em;
+
+    mat-panel-title {
+      width: 6em;
+      line-height: 2em;
+    }
   }
 }
 
-.main-body::-webkit-scrollbar {
-  display: none;
+.sp-main-container {
+  margin-right: calc(100% - 100vw);
+  .main-content {
+    max-width: 370px;
+    height: 100%;
+    margin: 0 auto;
+    .header {
+      position: relative;
+      height: 5em;
+      .title {
+        text-align: center;
+        line-height: 1.6em;
+      }
+    }
+    mat-panel-title {
+      width: 6em;
+      line-height: 2em;
+    }
+    .empty-data-image {
+      width: 100%;
+    }
+  }
 }

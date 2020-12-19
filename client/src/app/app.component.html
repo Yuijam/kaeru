@@ -1,20 +1,45 @@
-<div class="main-body">
-  <div class="header">
-    <h1 class="title">Kaeru</h1>
-  <app-date-picker (dateChange)="fetchData($event)"></app-date-picker>
+<div *appIfDevice="'pc'" class="main-container">
+  <div class="main-content">
+    <div class="header">
+      <h1 class="title">Kaeru</h1>
+      <app-date-picker (dateChange)="fetchData($event)"></app-date-picker>
+    </div>
+    <mat-accordion *ngIf="lineData && lineData.length">
+      <mat-expansion-panel *ngFor="let item of lineData">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{item.lineName}}
+          </mat-panel-title>
+          <mat-panel-description>
+            <app-line-des [lineDesData]="item.lineDes"></app-line-des>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <app-item-msg-list [msgList]="item.lineMsgList"></app-item-msg-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <img src="assets/images/empty.png" *ngIf="!lineData || !lineData.length" />
   </div>
-  <mat-accordion *ngIf="lineData && lineData.length">
-    <mat-expansion-panel *ngFor="let item of lineData">
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          {{item.lineName}}
-        </mat-panel-title>
-        <mat-panel-description>
-          <app-line-des [lineDesData]="item.lineDes"></app-line-des>
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-      <app-item-msg-list [msgList]="item.lineMsgList"></app-item-msg-list>
-    </mat-expansion-panel>
-  </mat-accordion>
-  <img src="assets/images/empty.png" *ngIf="!lineData || !lineData.length"/>
+</div>
+
+<div *appIfDevice="'sp'" class="sp-main-container">
+  <div class="main-content">
+    <div class="header">
+      <h1 class="title">Kaeru</h1>
+      <app-date-picker (dateChange)="fetchData($event)"></app-date-picker>
+    </div>
+    <mat-accordion *ngIf="lineData && lineData.length">
+      <mat-expansion-panel *ngFor="let item of lineData" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{item.lineName}}
+          </mat-panel-title>
+          <mat-panel-description>
+            <app-line-des [lineDesData]="item.lineDes"></app-line-des>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <app-item-msg-list [msgList]="item.lineMsgList"></app-item-msg-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <img class="empty-data-image" src="assets/images/empty.png" *ngIf="!lineData || !lineData.length" />
+  </div>
 </div>

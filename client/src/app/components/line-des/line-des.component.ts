@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TLineDesData, TPeriodCfg } from '../../types';
+import { TLineDesData, TPeriodCfg } from '../../../types';
+import { IsSpService } from '../../services/isSp/is-sp.service';
 
 @Component({
   selector: 'app-line-des',
@@ -31,7 +32,12 @@ export class LineDesComponent implements OnInit {
   totalMin = 20 * 60;
   desConfigs: TPeriodCfg[] = [];
 
+  constructor(private isSpService: IsSpService) {}
+
   ngOnInit(): void {
+    if (this.isSpService.isSp) {
+      this.totalWidth = 200;
+    }
     this.desConfigs = this.lineDesData.map((desData) => {
       const className = desData.statusCd === 'NORMAL' ? 'normal' : 'in-trouble';
       const width = (desData.time / this.totalMin) * this.totalWidth + 'px';
