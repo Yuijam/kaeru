@@ -1,16 +1,18 @@
-import { Directive, TemplateRef, ViewContainerRef } from '@angular/core';
+import { Directive, TemplateRef, ViewContainerRef, Input } from '@angular/core';
 import { IsSpService } from '../../services/isSp/is-sp.service';
 
 @Directive({
-  selector: '[appIsSp]',
+  selector: '[appIfDevice]',
 })
-export class IsSpDirective {
+export class IfDeviceDirective {
   constructor(
     private templateRef: TemplateRef<any>,
     private viewContainer: ViewContainerRef,
     private isSpService: IsSpService
-  ) {
-    if (this.isSpService.isSp) {
+  ) {}
+
+  @Input() set appIfDevice(device: 'pc' | 'sp') {
+    if (device === 'sp' && this.isSpService.isSp) {
       this.viewContainer.createEmbeddedView(this.templateRef);
     } else {
       this.viewContainer.clear();

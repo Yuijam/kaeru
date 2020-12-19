@@ -14,14 +14,14 @@ import { CommonModule } from '@angular/common';
 import { LineDesComponent } from './components/line-des/line-des.component';
 import { ItemMsgListComponent } from './components/item-msg-list/item-msg-list.component';
 import { DatePickerComponent } from './components/date-picker/date-picker.component';
-import { IsSpDirective } from './directives/isSp/is-sp.directive';
+import { IfDeviceDirective } from './directives/ifDevice/if-device.directive';
 @NgModule({
   declarations: [
     AppComponent,
     LineDesComponent,
     ItemMsgListComponent,
     DatePickerComponent,
-    IsSpDirective,
+    IfDeviceDirective,
   ],
   imports: [
     BrowserModule,
