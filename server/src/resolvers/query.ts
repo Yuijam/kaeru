@@ -18,10 +18,13 @@ export const Query: QueryResolvers = {
       return [];
     }
     const queryDate = args.date ? new Date(args.date) : new Date();
+    if (isToday(queryDate) && !isCheckingTime()) {
+      return [];
+    }
     const res = await Promise.all(
       lineConfigs.map(async ({id}) => {
         const todayRecords = await getTodayRecords(id, queryDate);
-        if (!todayRecords.length && (!isToday(queryDate) || isCheckingTime())) {
+        if (!todayRecords.length) {
           return initRecords(id, new Date(queryDate));
         }
         return todayRecords.map(r => ({...r, createdAt: toDateStr(r.createdAt)}));
