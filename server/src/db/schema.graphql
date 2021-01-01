@@ -1,5 +1,11 @@
 type Query {
   lineRecords(date: String): [[LineRecord!]!]
+  troubleCounts(dateStart: String!, dateEnd: String!): [TroubleCount!]
+}
+
+type TroubleCount {
+  id: Int!
+  count: Int!
 }
 
 type LineRecord {

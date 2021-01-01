@@ -16,11 +16,24 @@ export type Scalars = {
 export type Query = {
   __typename?: 'Query';
   lineRecords?: Maybe<Array<Array<LineRecord>>>;
+  troubleCounts?: Maybe<Array<TroubleCount>>;
 };
 
 
 export type QueryLineRecordsArgs = {
   date?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryTroubleCountsArgs = {
+  dateStart: Scalars['String'];
+  dateEnd: Scalars['String'];
+};
+
+export type TroubleCount = {
+  __typename?: 'TroubleCount';
+  id: Scalars['Int'];
+  count: Scalars['Int'];
 };
 
 export type LineRecord = {
@@ -114,8 +127,9 @@ export type DirectiveResolverFn<TResult = {}, TParent = {}, TContext = {}, TArgs
 export type ResolversTypes = ResolversObject<{
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']>;
-  LineRecord: ResolverTypeWrapper<LineRecord>;
+  TroubleCount: ResolverTypeWrapper<TroubleCount>;
   Int: ResolverTypeWrapper<Scalars['Int']>;
+  LineRecord: ResolverTypeWrapper<LineRecord>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
 }>;
 
@@ -123,13 +137,21 @@ export type ResolversTypes = ResolversObject<{
 export type ResolversParentTypes = ResolversObject<{
   Query: {};
   String: Scalars['String'];
-  LineRecord: LineRecord;
+  TroubleCount: TroubleCount;
   Int: Scalars['Int'];
+  LineRecord: LineRecord;
   Boolean: Scalars['Boolean'];
 }>;
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
   lineRecords?: Resolver<Maybe<Array<Array<ResolversTypes['LineRecord']>>>, ParentType, ContextType, RequireFields<QueryLineRecordsArgs, never>>;
+  troubleCounts?: Resolver<Maybe<Array<ResolversTypes['TroubleCount']>>, ParentType, ContextType, RequireFields<QueryTroubleCountsArgs, 'dateStart' | 'dateEnd'>>;
+}>;
+
+export type TroubleCountResolvers<ContextType = any, ParentType extends ResolversParentTypes['TroubleCount'] = ResolversParentTypes['TroubleCount']> = ResolversObject<{
+  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
 export type LineRecordResolvers<ContextType = any, ParentType extends ResolversParentTypes['LineRecord'] = ResolversParentTypes['LineRecord']> = ResolversObject<{
@@ -144,6 +166,7 @@ export type LineRecordResolvers<ContextType = any, ParentType extends ResolversP
 
 export type Resolvers<ContextType = any> = ResolversObject<{
   Query?: QueryResolvers<ContextType>;
+  TroubleCount?: TroubleCountResolvers<ContextType>;
   LineRecord?: LineRecordResolvers<ContextType>;
 }>;
 

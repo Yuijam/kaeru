@@ -1,7 +1,9 @@
 import {RecordCreateInput} from '@prisma/client';
 import {prisma} from './prisma';
 import {setHours, endOfDay} from '../helper';
-import {startHour} from '../config';
+import {startHour, lineIds} from '../config';
+import {TroubleCount} from '../generated/graphql';
+import {isSameDay} from 'date-fns';
 
 export const getTodayLatestRecord = async (lineId: number) => {
   const res = await getTodayRecords(lineId, new Date());
@@ -22,6 +24,41 @@ export const getTodayRecords = async (lineId: number, date: Date) => {
     orderBy: {
       createdAt: 'asc',
     },
+  });
+  return res;
+};
+
+export const getTroubleCounts = async (dateStart: Date, dateEnd: Date) => {
+  const records = await prisma.record.findMany({
+    where: {
+      createdAt: {
+        gte: dateStart,
+        lte: dateEnd,
+      },
+    },
+    orderBy: {
+      createdAt: 'asc',
+    },
+  });
+
+  const res = lineIds.map(id => {
+    let preDate: Date;
+    return records
+      .filter(({lineId, statusCd}) => lineId === id && statusCd === 'IN_TROUBLE')
+      .reduce(
+        (acc, cur) => {
+          if (!preDate) {
+            preDate = new Date(cur.createdAt);
+            return {...acc, count: ++acc.count};
+          }
+          if (!isSameDay(preDate, new Date(cur.createdAt))) {
+            preDate = new Date(cur.createdAt);
+            return {...acc, count: ++acc.count};
+          }
+          return acc;
+        },
+        {id, count: 0} as TroubleCount,
+      );
   });
   return res;
 };

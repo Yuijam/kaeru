@@ -76,3 +76,5 @@ export const lineConfigs: TLineConfig[] = [
     screenName: 'H_line_info',
   },
 ];
+
+export const lineIds = lineConfigs.map(({id}) => id);
