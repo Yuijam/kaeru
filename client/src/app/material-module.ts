@@ -10,7 +10,7 @@ import { NgModule } from '@angular/core';
 // import { MatAutocompleteModule } from '@angular/material/autocomplete';
 // import { MatBadgeModule } from '@angular/material/badge';
 // import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
-// import { MatButtonModule } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 // import { MatButtonToggleModule } from '@angular/material/button-toggle';
 // import { MatCardModule } from '@angular/material/card';
 // import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -38,7 +38,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 // import { MatSortModule } from '@angular/material/sort';
 // import { MatTableModule } from '@angular/material/table';
 // import { MatTabsModule } from '@angular/material/tabs';
-// import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatToolbarModule } from '@angular/material/toolbar';
 // import { MatTooltipModule } from '@angular/material/tooltip';
 // import { MatTreeModule } from '@angular/material/tree';
 // import { OverlayModule } from '@angular/cdk/overlay';
@@ -54,7 +54,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     // MatAutocompleteModule,
     // MatBadgeModule,
     // MatBottomSheetModule,
-    // MatButtonModule,
+    MatButtonModule,
     // MatButtonToggleModule,
     // MatCardModule,
     // MatCheckboxModule,
@@ -83,7 +83,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     // MatSortModule,
     // MatTableModule,
     // MatTabsModule,
-    // MatToolbarModule,
+    MatToolbarModule,
     // MatTooltipModule,
     // MatTreeModule,
     // OverlayModule,

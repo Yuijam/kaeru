@@ -15,6 +15,8 @@ import { LineDesComponent } from './components/line-des/line-des.component';
 import { ItemMsgListComponent } from './components/item-msg-list/item-msg-list.component';
 import { DatePickerComponent } from './components/date-picker/date-picker.component';
 import { IfDeviceDirective } from './directives/ifDevice/if-device.directive';
+import { HomeComponent } from './components/home/home.component';
+import { DataComponent } from './components/data/data.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +24,8 @@ import { IfDeviceDirective } from './directives/ifDevice/if-device.directive';
     ItemMsgListComponent,
     DatePickerComponent,
     IfDeviceDirective,
+    HomeComponent,
+    DataComponent,
   ],
   imports: [
     BrowserModule,
