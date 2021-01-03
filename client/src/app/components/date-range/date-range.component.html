@@ -1,4 +1,4 @@
-<mat-form-field appearance="standard">
+<mat-form-field appearance="standard" [ngClass] = "{'sp-container': isSpService.isSp}">
   <mat-label>date range</mat-label>
   <mat-date-range-input [dateFilter]="myFilter" [formGroup]="range" [rangePicker]="picker">
     <input matStartDate placeholder="Start date" disabled formControlName="start">

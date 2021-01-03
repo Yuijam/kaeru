@@ -14,7 +14,7 @@ export class DataListComponent {
   constructor(private isSpService: IsSpService) {}
 
   get colorWidth() {
-    return this.isSpService ? 200 : 300;
+    return this.isSpService.isSp ? 240 : 400;
   }
 
   get listData(): TDataItem[] {

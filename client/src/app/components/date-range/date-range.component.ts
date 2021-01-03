@@ -5,6 +5,7 @@ import { QueryTroubleCountsArgs } from '../../../generated/graphql-types';
 import { toDateOnly, startDate } from '../../../helpers';
 import { isAfter, endOfDay } from '../../../helpers';
 import { addDays } from 'date-fns';
+import { IsSpService } from '../../services/isSp/is-sp.service';
 
 @Component({
   selector: 'app-date-range',
@@ -13,6 +14,8 @@ import { addDays } from 'date-fns';
 })
 export class DateRangeComponent {
   @Output() dateChange = new EventEmitter<QueryTroubleCountsArgs>();
+
+  constructor(private isSpService: IsSpService) {}
 
   myFilter = (d: Date | null): boolean =>
     isAfter(d, startDate) && isAfter(endOfDay(new Date()), d);
