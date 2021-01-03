@@ -1,0 +1,23 @@
+.data-item-container {
+  .data-item-name {
+    display: inline-block;
+    width: 6em;
+    vertical-align: middle;
+  }
+  
+  .data-item-color-block {
+    display: inline-block;
+    height: 1.8em;
+    width: 300px;
+    background-color: #ff8d76;
+    vertical-align: middle;
+
+  }
+  
+  .data-item-value {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 1.6em;
+    line-height: 1.8em;
+  }
+}

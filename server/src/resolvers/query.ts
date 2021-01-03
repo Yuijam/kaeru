@@ -2,8 +2,9 @@ import {QueryResolvers} from '../generated/graphql';
 import {toDateStr, isValid, startCheckingDateStr} from '../helper';
 import {isToday} from 'date-fns';
 import {lineConfigs, isCheckingTime} from '../config';
-import {getTodayRecords} from '../db/record';
+import {getTodayRecords, getTroubleCounts} from '../db/record';
 import {LineRecord} from '../generated/graphql';
+import {logger} from '../helper';
 
 const initRecords = (() => {
   let tempId = -1;
@@ -31,5 +32,15 @@ export const Query: QueryResolvers = {
       }),
     );
     return res;
+  },
+  troubleCounts: async (parent, args) => {
+    const {dateStart: dateStartStr, dateEnd: dateEndStr} = args;
+    const dateStart = new Date(dateStartStr);
+    const dateEnd = new Date(dateEndStr);
+    if (!isValid(dateStart) || !isValid(dateEnd)) {
+      logger.error(`troubleCounts invalid date ${dateStart}, ${dateEnd}`);
+      return [];
+    }
+    return getTroubleCounts(dateStart, dateEnd);
   },
 };

@@ -1,13 +1,18 @@
 <div *appIfDevice="'pc'" class="date-picker-body">
-  <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" disabled [formControl]="date"
-    (dateChange)="onDataChange($event)">
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker disabled="false"></mat-datepicker>
+  <mat-form-field appearance="standard">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" disabled [formControl]="date"
+      (dateChange)="onDateChange($event)">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker disabled="false"></mat-datepicker>
+  </mat-form-field>
 </div>
 
 <div *appIfDevice="'sp'" class="sp-date-picker-body">
-  <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" disabled [formControl]="date"
-    (dateChange)="onDataChange($event)">
-  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-  <mat-datepicker #picker disabled="false"></mat-datepicker>
+  <mat-form-field appearance="standard">
+    <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" disabled [formControl]="date"
+      (dateChange)="onDataChange($event)">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker disabled="false"></mat-datepicker>
+  </mat-form-field>
 </div>

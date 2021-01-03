@@ -19,11 +19,24 @@ export type Scalars = {
 export type Query = {
   __typename?: 'Query';
   lineRecords?: Maybe<Array<Array<LineRecord>>>;
+  troubleCounts?: Maybe<Array<TroubleCount>>;
 };
 
 
 export type QueryLineRecordsArgs = {
   date?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryTroubleCountsArgs = {
+  dateStart: Scalars['String'];
+  dateEnd: Scalars['String'];
+};
+
+export type TroubleCount = {
+  __typename?: 'TroubleCount';
+  lineName: Scalars['String'];
+  count: Scalars['Int'];
 };
 
 export type LineRecord = {
@@ -49,6 +62,20 @@ export type GetLineRecordsQuery = (
   )>>> }
 );
 
+export type GetTroubleCountsQueryVariables = Exact<{
+  dateStart: Scalars['String'];
+  dateEnd: Scalars['String'];
+}>;
+
+
+export type GetTroubleCountsQuery = (
+  { __typename?: 'Query' }
+  & { troubleCounts?: Maybe<Array<(
+    { __typename?: 'TroubleCount' }
+    & Pick<TroubleCount, 'lineName' | 'count'>
+  )>> }
+);
+
 export const GetLineRecordsDocument = gql`
     query GetLineRecords($date: String) {
   lineRecords(date: $date) {
@@ -67,6 +94,25 @@ export const GetLineRecordsDocument = gql`
   })
   export class GetLineRecordsGQL extends Apollo.Query<GetLineRecordsQuery, GetLineRecordsQueryVariables> {
     document = GetLineRecordsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetTroubleCountsDocument = gql`
+    query GetTroubleCounts($dateStart: String!, $dateEnd: String!) {
+  troubleCounts(dateStart: $dateStart, dateEnd: $dateEnd) {
+    lineName
+    count
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetTroubleCountsGQL extends Apollo.Query<GetTroubleCountsQuery, GetTroubleCountsQueryVariables> {
+    document = GetTroubleCountsDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
