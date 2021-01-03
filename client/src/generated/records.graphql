@@ -8,3 +8,10 @@ query GetLineRecords($date: String) {
     lineId
   }
 }
+
+query GetTroubleCounts($dateStart: String!, $dateEnd: String!) {
+  troubleCounts(dateStart: $dateStart, dateEnd: $dateEnd) {
+    lineName
+    count
+  }
+}

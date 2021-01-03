@@ -16,7 +16,7 @@ export class DatePickerComponent {
   myFilter = (d: Date | null): boolean =>
     isAfter(d, startDate) && isAfter(endOfDay(new Date()), d);
 
-  onDataChange(event: MatDatepickerInputEvent<Date>) {
+  onDateChange(event: MatDatepickerInputEvent<Date>) {
     this.dateChange.emit(event.value);
   }
 }

@@ -4,7 +4,7 @@ type Query {
 }
 
 type TroubleCount {
-  id: Int!
+  lineName: String!
   count: Int!
 }
 

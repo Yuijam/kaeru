@@ -121,7 +121,7 @@
         "description": null,
         "fields": [
           {
-            "name": "id",
+            "name": "lineName",
             "description": null,
             "args": [],
             "type": {
@@ -129,7 +129,7 @@
               "name": null,
               "ofType": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "String",
                 "ofType": null
               }
             },

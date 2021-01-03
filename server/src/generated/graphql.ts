@@ -32,7 +32,7 @@ export type QueryTroubleCountsArgs = {
 
 export type TroubleCount = {
   __typename?: 'TroubleCount';
-  id: Scalars['Int'];
+  lineName: Scalars['String'];
   count: Scalars['Int'];
 };
 
@@ -149,7 +149,7 @@ export type QueryResolvers<ContextType = any, ParentType extends ResolversParent
 }>;
 
 export type TroubleCountResolvers<ContextType = any, ParentType extends ResolversParentTypes['TroubleCount'] = ResolversParentTypes['TroubleCount']> = ResolversObject<{
-  id?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  lineName?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   count?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;

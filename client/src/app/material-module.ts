@@ -22,10 +22,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatExpansionModule } from '@angular/material/expansion';
 // import { MatGridListModule } from '@angular/material/grid-list';
 // import { MatIconModule } from '@angular/material/icon';
-// import { MatInputModule } from '@angular/material/input';
+import { MatInputModule } from '@angular/material/input';
 // import { MatListModule } from '@angular/material/list';
 // import { MatMenuModule } from '@angular/material/menu';
-// import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 // import { MatPaginatorModule } from '@angular/material/paginator';
 // import { MatProgressBarModule } from '@angular/material/progress-bar';
 // import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -42,6 +42,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 // import { MatTooltipModule } from '@angular/material/tooltip';
 // import { MatTreeModule } from '@angular/material/tree';
 // import { OverlayModule } from '@angular/cdk/overlay';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   exports: [
@@ -66,10 +67,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatExpansionModule,
     // MatGridListModule,
     // MatIconModule,
-    // MatInputModule,
+    MatInputModule,
     // MatListModule,
     // MatMenuModule,
-    // MatNativeDateModule,
+    MatNativeDateModule,
     // MatPaginatorModule,
     // MatProgressBarModule,
     // MatProgressSpinnerModule,
@@ -89,6 +90,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     // OverlayModule,
     // PortalModule,
     // ScrollingModule,
+    MatFormFieldModule,
   ],
 })
 export class DemoMaterialModule {}

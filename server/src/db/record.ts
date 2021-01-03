@@ -1,7 +1,7 @@
 import {RecordCreateInput} from '@prisma/client';
 import {prisma} from './prisma';
 import {setHours, endOfDay} from '../helper';
-import {startHour, lineIds} from '../config';
+import {startHour, lineIds, getLineName} from '../config';
 import {TroubleCount} from '../generated/graphql';
 import {isSameDay} from 'date-fns';
 
@@ -57,7 +57,7 @@ export const getTroubleCounts = async (dateStart: Date, dateEnd: Date) => {
           }
           return acc;
         },
-        {id, count: 0} as TroubleCount,
+        {lineName: getLineName(id), count: 0} as TroubleCount,
       );
   });
   return res;
