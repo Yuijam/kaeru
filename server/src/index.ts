@@ -25,6 +25,9 @@ const app = express();
 app.use(express.static(path.join(__dirname, '..', '/static/kaieru')));
 app.use('/graphql', bodyParser.json(), graphqlExpress({schema}));
 app.use('/graphiql', graphiqlExpress({endpointURL: '/graphql'}));
+app.get('*', (req, res) => {
+  res.sendFile('index.html', {root: path.join(__dirname, '..', '/static/kaieru')});
+});
 app.listen(3000, () => {
   console.log('Go to http://localhost:3000/graphiql to run queries!');
 });
