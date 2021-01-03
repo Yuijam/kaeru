@@ -1,4 +1,4 @@
-<div>
+<div [ngClass]="{'sp-container': isSpService.isSp}">
   <app-date-range (dateChange)='onDateChange($event)'></app-date-range>
-  <app-data-list [troubleCounts]='troubleCounts'></app-data-list>
+  <app-data-list [troubleCounts]='troubleCounts' [listTitle]='listTitle'></app-data-list>
 </div>

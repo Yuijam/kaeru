@@ -4,8 +4,9 @@ import {
   GetTroubleCountsQuery,
   QueryTroubleCountsArgs,
 } from '../../../generated/graphql-types';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { startDate, toDateOnly } from '../../../helpers';
+import { IsSpService } from '../../services/isSp/is-sp.service';
 
 @Component({
   selector: 'app-data',
@@ -14,11 +15,31 @@ import { startDate, toDateOnly } from '../../../helpers';
 })
 export class DataComponent implements OnInit {
   troubleCounts: GetTroubleCountsQuery['troubleCounts'];
+  _listTitle: string;
 
-  constructor(private getTroubleCountsGQL: GetTroubleCountsGQL) {}
+  constructor(
+    private getTroubleCountsGQL: GetTroubleCountsGQL,
+    public isSpService: IsSpService
+  ) {}
 
   ngOnInit(): void {
+    this.listTitle = this.toListTitle(
+      toDateOnly(startDate),
+      toDateOnly(new Date())
+    );
     this.fetchTroubleCounts(toDateOnly(startDate), toDateOnly(new Date()));
+  }
+
+  get listTitle() {
+    return this._listTitle;
+  }
+
+  set listTitle(title: string) {
+    this._listTitle = title;
+  }
+
+  toListTitle(dateStart: string, dateEnd: string) {
+    return `${dateStart} ~ ${dateEnd} 遅延が発生した日数`;
   }
 
   fetchTroubleCounts(dateStart: string, dateEnd: string) {
@@ -35,6 +56,7 @@ export class DataComponent implements OnInit {
 
   onDateChange(event: QueryTroubleCountsArgs) {
     const { dateStart, dateEnd } = event;
+    this.listTitle = this.toListTitle(dateStart, dateEnd);
     this.fetchTroubleCounts(dateStart, dateEnd);
   }
 }

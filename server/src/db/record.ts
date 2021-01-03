@@ -33,7 +33,7 @@ export const getTroubleCounts = async (dateStart: Date, dateEnd: Date) => {
     where: {
       createdAt: {
         gte: dateStart,
-        lte: dateEnd,
+        lte: endOfDay(dateEnd),
       },
     },
     orderBy: {

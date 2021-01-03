@@ -10,7 +10,6 @@ export class IsSpService {
     this.isSp = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|mobile|CriOS/i.test(
       navigator.userAgent
     );
-    console.log('this.isSp', this.isSp);
   }
 
   get isSp() {

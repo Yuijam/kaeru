@@ -10,6 +10,7 @@ import { GetTroubleCountsQuery } from '../../../generated/graphql-types';
 })
 export class DataListComponent {
   @Input() troubleCounts: GetTroubleCountsQuery['troubleCounts'];
+  @Input() listTitle: string;
 
   constructor(private isSpService: IsSpService) {}
 
