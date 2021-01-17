@@ -4,7 +4,6 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 import { QueryTroubleCountsArgs } from '../../../generated/graphql-types';
 import { toDateOnly, startDate } from '../../../helpers';
 import { isAfter, endOfDay } from '../../../helpers';
-import { addDays } from 'date-fns';
 import { IsSpService } from '../../services/isSp/is-sp.service';
 
 @Component({
@@ -20,12 +19,12 @@ export class DateRangeComponent {
   myFilter = (d: Date | null): boolean =>
     isAfter(d, startDate) && isAfter(endOfDay(new Date()), d);
 
-  defaultStart = addDays(startDate, 1);
+  defaultStart = startDate;
   defaultEnd = new Date();
 
   range = new FormGroup({
-    start: new FormControl(this.defaultStart),
-    end: new FormControl(this.defaultEnd),
+    start: new FormControl({ value: this.defaultStart, disabled: true }),
+    end: new FormControl({ value: this.defaultEnd, disabled: true }),
   });
 
   onDateEndChange(event: MatDatepickerInputEvent<Date>) {

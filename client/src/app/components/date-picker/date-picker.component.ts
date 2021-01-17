@@ -11,7 +11,7 @@ import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 })
 export class DatePickerComponent {
   @Output() dateChange = new EventEmitter<Date>();
-  date = new FormControl(new Date());
+  date = new FormControl({ value: new Date(), disabled: true });
 
   myFilter = (d: Date | null): boolean =>
     isAfter(d, startDate) && isAfter(endOfDay(new Date()), d);
