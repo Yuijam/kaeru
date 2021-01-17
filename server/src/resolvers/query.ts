@@ -4,7 +4,7 @@ import {isToday} from 'date-fns';
 import {lineConfigs, isCheckingTime} from '../config';
 import {getTodayRecords, getTroubleCounts} from '../db/record';
 import {LineRecord} from '../generated/graphql';
-import {logger} from '../helper';
+import {logger, parsetRecordStatus} from '../helper';
 
 const initRecords = (() => {
   let tempId = -1;
@@ -31,7 +31,7 @@ export const Query: QueryResolvers = {
         return todayRecords.map(r => ({...r, createdAt: toDateStr(r.createdAt)}));
       }),
     );
-    return res;
+    return res.map(records => parsetRecordStatus(records));
   },
   troubleCounts: async (parent, args) => {
     const {dateStart: dateStartStr, dateEnd: dateEndStr} = args;
