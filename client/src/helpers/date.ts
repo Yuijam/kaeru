@@ -11,6 +11,9 @@ import {
 const formatPattern = {
   yyyyMMddHHmmss: 'yyyy/MM/dd HH:mm:ss',
   yyyyMMdd: 'yyyy/MM/dd',
+  _yyyyMMddHHmmss: 'yyyy-MM-dd HH:mm:ss',
+  _yyyyMMdd: 'yyyy-MM-dd',
+  HHmm: 'HH:mm',
 };
 
 const toDateStr = (

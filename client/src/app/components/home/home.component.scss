@@ -8,6 +8,14 @@
       width: 6em;
       line-height: 2em;
     }
+
+    .time-area {
+      display: flex;
+      .time-text {
+        margin-top: 2em;
+        margin-left: 1em;
+      }
+    }
   }
 }
 

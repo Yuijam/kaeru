@@ -6,9 +6,17 @@ import {
 } from '../../../generated/graphql-types';
 import { Observable } from 'rxjs';
 import { MatAccordion } from '@angular/material/expansion';
-import { toLineData } from '../../../helpers';
+import {
+  toLineData,
+  nowStr,
+  startHourText,
+  toDateOnly,
+  formatPattern,
+  toDateStr,
+  endHourText,
+} from '../../../helpers';
 import { TLineItemData } from '../../../types';
-import { toDateOnly } from '../../../helpers';
+import { isToday } from 'date-fns';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +28,7 @@ export class HomeComponent implements OnInit {
 
   records: Observable<GetLineRecordsQuery['lineRecords']>;
   lineData: TLineItemData[];
+  timeText = '';
   constructor(private getRecordsGQL: GetLineRecordsGQL) {}
 
   ngOnInit() {
@@ -27,6 +36,7 @@ export class HomeComponent implements OnInit {
   }
 
   fetchData(date: Date | string = new Date()) {
+    this.handleTimeText(date);
     this.getRecordsGQL
       .watch({
         date: toDateOnly(date),
@@ -36,5 +46,13 @@ export class HomeComponent implements OnInit {
         map(({ lineRecords }) => toLineData(lineRecords))
       )
       .subscribe((r) => (this.lineData = r));
+  }
+
+  handleTimeText(date: Date | string = new Date()) {
+    const dateStr = toDateStr(date, formatPattern._yyyyMMdd);
+    const timeStr = isToday(new Date(date))
+      ? nowStr(formatPattern.HHmm)
+      : endHourText;
+    this.timeText = `${dateStr} ${startHourText} ~ ${timeStr} 運行状況`;
   }
 }
