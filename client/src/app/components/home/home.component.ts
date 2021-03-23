@@ -14,9 +14,10 @@ import {
   formatPattern,
   toDateStr,
   endHourText,
+  startHour,
 } from '../../../helpers';
 import { TLineItemData } from '../../../types';
-import { isToday } from 'date-fns';
+import { isToday, getHours } from 'date-fns';
 
 @Component({
   selector: 'app-home',
@@ -49,6 +50,11 @@ export class HomeComponent implements OnInit {
   }
 
   handleTimeText(date: Date | string = new Date()) {
+    const h = getHours(new Date(date));
+    if (h < startHour) {
+      this.timeText = `お休み中です~~ (¦3[▓▓] `;
+      return;
+    }
     const dateStr = toDateStr(date, formatPattern._yyyyMMdd);
     const timeStr = isToday(new Date(date))
       ? nowStr(formatPattern.HHmm)
