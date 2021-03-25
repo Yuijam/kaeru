@@ -50,15 +50,17 @@ export class HomeComponent implements OnInit {
   }
 
   handleTimeText(date: Date | string = new Date()) {
-    const h = getHours(new Date(date));
-    if (h < startHour) {
-      this.timeText = `お休み中です~~ (¦3[▓▓] `;
-      return;
-    }
     const dateStr = toDateStr(date, formatPattern._yyyyMMdd);
-    const timeStr = isToday(new Date(date))
-      ? nowStr(formatPattern.HHmm)
-      : endHourText;
-    this.timeText = `${dateStr} ${startHourText} ~ ${timeStr} 運行状況`;
+    if (isToday(new Date(date))) {
+      const h = getHours(new Date());
+      this.timeText =
+        h < startHour
+          ? `お休み中です~~ (¦3[▓▓] `
+          : `${dateStr} ${startHourText} ~ ${nowStr(
+              formatPattern.HHmm
+            )} 運行状況`;
+    } else {
+      this.timeText = `${dateStr} ${startHourText} ~ ${endHourText} 運行状況`;
+    }
   }
 }
